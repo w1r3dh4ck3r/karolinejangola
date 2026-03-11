@@ -624,8 +624,13 @@ h1, h2, h3 {
     }
 
     .hero-content {
-        max-width: 420px;
+        max-width: none;
         padding-left: 0;
+    }
+
+    .hero h1,
+    .hero-subtitle {
+        white-space: nowrap;
     }
 
     .hero h1 {
