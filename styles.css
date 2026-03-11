@@ -250,12 +250,6 @@ h1, h2, h3 {
     letter-spacing: 0.02em;
 }
 
-.hero-microcopy {
-    margin-top: 12px;
-    font-size: 0.85rem;
-    color: var(--color-text-muted);
-    font-weight: 300;
-}
 
 /* ── Buttons ── */
 
@@ -309,26 +303,6 @@ h1, h2, h3 {
     background: #1ca04e;
 }
 
-.btn-hero {
-    padding: 10px 24px;
-    font-size: 0.9rem;
-    background: var(--color-brand);
-    color: #fff;
-}
-
-.btn-hero .whatsapp-icon {
-    color: var(--color-whatsapp);
-}
-
-@media (hover: hover) {
-    .btn-hero:hover {
-        background: var(--color-heading-dark);
-    }
-}
-
-.btn-hero:active {
-    background: var(--color-heading-dark);
-}
 
 /* ── Sections ── */
 
@@ -659,11 +633,6 @@ h1, h2, h3 {
     }
 
     .hero-subtitle {
-        font-size: 1.05rem;
-    }
-
-    .btn-hero {
-        padding: 14px 32px;
         font-size: 1.05rem;
     }
 
