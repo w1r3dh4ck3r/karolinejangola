@@ -219,7 +219,7 @@ h1, h2, h3 {
 }
 
 .hero-banner {
-    background: var(--color-brand-light) url('images/hero-bg.jpg') left center / cover no-repeat;
+    background: var(--color-brand-light) url('images/hero-bg.jpg') left center / contain no-repeat;
     min-height: 40vh;
     display: flex;
     align-items: center;
