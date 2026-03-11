@@ -222,7 +222,7 @@ h1, h2, h3 {
     background: var(--color-brand-light) url('images/hero-bg.jpg') center / contain no-repeat;
     max-width: 1100px;
     margin: 0 auto;
-    aspect-ratio: 1376 / 608;
+    aspect-ratio: 1376 / 635;
     display: flex;
     align-items: center;
     justify-content: flex-end;
