@@ -235,7 +235,7 @@ h1, h2, h3 {
 }
 
 .hero h1 {
-    font-size: 1.8rem;
+    font-size: 2.2rem;
     font-weight: 700;
     color: var(--color-brand);
     margin-bottom: 12px;
@@ -243,7 +243,7 @@ h1, h2, h3 {
 }
 
 .hero-subtitle {
-    font-size: 0.95rem;
+    font-size: 1.05rem;
     color: var(--color-text-secondary);
     margin-bottom: 24px;
     font-weight: 400;
@@ -629,11 +629,11 @@ h1, h2, h3 {
     }
 
     .hero h1 {
-        font-size: 2.2rem;
+        font-size: 2.8rem;
     }
 
     .hero-subtitle {
-        font-size: 1.05rem;
+        font-size: 1.15rem;
     }
 
     .section {
@@ -716,11 +716,11 @@ h1, h2, h3 {
 
 @media (min-width: 1025px) {
     .hero h1 {
-        font-size: 2.6rem;
+        font-size: 3.2rem;
     }
 
     .hero-subtitle {
-        font-size: 1.15rem;
+        font-size: 1.3rem;
     }
 
     .treatments-grid {
