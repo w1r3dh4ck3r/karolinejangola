@@ -220,7 +220,7 @@ h1, h2, h3 {
 
 .hero-banner {
     background: var(--color-brand-light) url('images/hero-bg.jpg') left center / cover no-repeat;
-    min-height: 50vh;
+    min-height: 40vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -622,17 +622,21 @@ h1, h2, h3 {
 
 @media (min-width: 769px) {
     .hero-banner {
-        min-height: 60vh;
+        min-height: 40vh;
         justify-content: flex-end;
-        padding: 64px 80px;
+        padding: 48px 80px;
     }
 
     .hero-content {
-        max-width: 480px;
+        max-width: 520px;
     }
 
     .hero h1 {
-        font-size: 3rem;
+        font-size: 3.2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.15rem;
     }
 
     .section {
@@ -715,15 +719,15 @@ h1, h2, h3 {
 
 @media (min-width: 1025px) {
     .hero-banner {
-        min-height: 65vh;
+        min-height: 45vh;
     }
 
     .hero h1 {
-        font-size: 3.6rem;
+        font-size: 3.8rem;
     }
 
     .hero-subtitle {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
     }
 
     .treatments-grid {
