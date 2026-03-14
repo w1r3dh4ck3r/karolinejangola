@@ -45,7 +45,7 @@ All in `images/`:
 
 ## Key Details
 
-- **WhatsApp:** +55 79 99649-1276
+- **WhatsApp:** +55 27 99511-9177
 - **Email:** karoljangola@gmail.com
 - **WhatsApp pre-filled message:** "Ola, vi seu site e gostaria de mais informacoes."
 - **RQP register:** K-69702-DF (badge image shown, but NOT mentioned in body text per client request)
