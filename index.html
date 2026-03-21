@@ -1,391 +1,128 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!doctype html>
+<html lang="pt-BR" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Karoline Jangola | Psicanalista e Terapeuta Online</title>
-    <meta name="description" content="Psicanálise e terapia humanizada para mulheres e crianças. Atendimento exclusivamente online para todo o Brasil.">
-    <meta name="theme-color" content="#5a4a3a">
+    <meta name="description" content="Psicanalista e terapeuta online especializada em mulheres e crianças. Tratamento de ansiedade, depressão, trauma e terapia infantil (TDAH/TEA). Atendimento online para todo o Brasil." />
+    <meta name="author" content="Karoline Jangola" />
+    <meta name="keywords" content="psicanalista online, terapeuta online, terapia infantil, psicóloga online Brasil, ansiedade, depressão, TDAH, TEA, terapia para mulheres, psicanálise online" />
+    <link rel="canonical" href="https://www.karolinejangola.com" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/favicon-192.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-    <!-- Favicon -->
-    <link rel="icon" href="favicon.ico" sizes="48x48">
-    <link rel="icon" href="favicon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <meta property="og:title" content="Karoline Jangola | Psicanalista e Terapeuta Online" />
+    <meta property="og:description" content="Psicanalista e terapeuta online especializada em mulheres e crianças. Tratamento de ansiedade, depressão, trauma e terapia infantil. Atendimento para todo o Brasil." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.karolinejangola.com" />
+    <meta property="og:image" content="https://www.karolinejangola.com/og-image.jpg" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="Karoline Jangola - Psicanalista" />
 
-    <!-- Open Graph -->
-    <meta property="og:title" content="Karoline Jangola | Psicanalista e Terapeuta">
-    <meta property="og:description" content="Terapia humanizada para mulheres e crianças. Atendimento online para todo o Brasil.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.karolinejangola.com">
-    <meta property="og:locale" content="pt_BR">
-    <meta property="og:image" content="https://www.karolinejangola.com/images/og-image.jpg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Karoline Jangola | Psicanalista e Terapeuta Online" />
+    <meta name="twitter:description" content="Psicanálise e terapia humanizada para mulheres e crianças. Atendimento online para todo o Brasil." />
+    <meta name="twitter:image" content="https://www.karolinejangola.com/og-image.jpg" />
 
-    <!-- Canonical -->
-    <link rel="canonical" href="https://www.karolinejangola.com">
+    <meta name="geo.region" content="BR" />
+    <meta name="geo.placename" content="Brasil" />
 
-    <!-- Preload hero image -->
-    <link rel="preload" as="image" href="images/hero-bg.jpg">
-
-    <!-- Structured Data -->
+    <!-- Structured Data: Person + ProfessionalService -->
     <script type="application/ld+json">
     {
-        "@context": "https://schema.org",
-        "@type": "MedicalBusiness",
-        "name": "Karoline Jangola — Psicanalista e Terapeuta",
-        "description": "Psicanálise e terapia humanizada para mulheres e crianças. Atendimento online para todo o Brasil.",
-        "url": "https://www.karolinejangola.com",
-        "telephone": "+5527995119177",
-        "email": "karoljangola@gmail.com",
-        "priceRange": "$$",
-        "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Vila Velha",
-            "addressRegion": "ES",
-            "addressCountry": "BR"
-        },
-        "areaServed": {
-            "@type": "Country",
-            "name": "Brasil"
-        },
-        "availableChannel": {
-            "@type": "ServiceChannel",
-            "serviceType": "Online"
-        }
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "ProfessionalService",
-        "name": "Karoline Jangola — Psicanalista e Terapeuta",
-        "serviceType": ["Psicanálise", "Terapia Infantil", "Terapia para Mulheres", "Terapia de Trauma"],
-        "provider": {
-            "@type": "Person",
-            "name": "Karoline Jangola",
-            "jobTitle": "Psicanalista e Terapeuta"
-        }
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-            {
-                "@type": "Question",
-                "name": "Como funciona a primeira sessão?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "A primeira sessão é um espaço de acolhimento onde conversamos sobre o que trouxe você até aqui. Não há julgamento — é um momento para você se sentir ouvida e começar a construir um vínculo de confiança. A partir daí, traçamos juntas o melhor caminho para o seu acompanhamento."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Quanto tempo dura o tratamento?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Cada pessoa tem seu próprio ritmo. Algumas questões podem ser trabalhadas em poucos meses, enquanto outras pedem um acompanhamento mais longo. Conversamos sobre isso ao longo do processo, sempre respeitando o seu tempo."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Como funciona o atendimento online?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "As sessões acontecem por videochamada, com a mesma qualidade e privacidade do atendimento presencial. Você só precisa de um ambiente tranquilo e uma conexão com a internet. Atendo de qualquer lugar do Brasil."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Você atende por plano de saúde?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Atualmente atendo apenas de forma particular. Porém, emito recibo para que você possa solicitar reembolso ao seu plano de saúde, caso ele ofereça essa possibilidade."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Para quem é indicado o seu atendimento?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Atendo mulheres adultas e crianças/pré-adolescentes. Trabalho com questões como ansiedade, depressão, traumas, dificuldades nos relacionamentos e desafios emocionais da infância e adolescência."
-                }
-            }
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Karoline Jangola - Psicanalista e Terapeuta",
+      "description": "Psicanalista e terapeuta online especializada em mulheres e crianças. Tratamento de ansiedade, depressão, trauma e terapia infantil (TDAH/TEA).",
+      "url": "https://www.karolinejangola.com",
+      "telephone": "+55-27-99511-9177",
+      "email": "karoljangola@gmail.com",
+      "image": "https://www.karolinejangola.com/og-image.jpg",
+      "priceRange": "$$",
+      "areaServed": {
+        "@type": "Country",
+        "name": "Brasil"
+      },
+      "serviceType": ["Psicanálise", "Terapia Online", "Terapia Infantil", "Terapia para Mulheres"],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Tratamentos",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ansiedade" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Depressão" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Relacionamentos" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Trauma" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Terapia de Jovens" } }
         ]
+      },
+      "sameAs": [
+        "https://www.instagram.com/psicanalista_karolinejangola"
+      ],
+      "founder": {
+        "@type": "Person",
+        "name": "Karoline Jangola",
+        "jobTitle": "Psicanalista e Terapeuta",
+        "url": "https://www.karolinejangola.com",
+        "sameAs": ["https://www.instagram.com/psicanalista_karolinejangola"]
+      }
     }
     </script>
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-
-    <!-- SVG Sprite -->
-    <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
-        <symbol id="icon-leaf" viewBox="0 0 40 20" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M2 18 C8 18 14 14 20 10 C26 6 32 4 38 2"/>
-            <path d="M20 10 C18 13 15 15 12 16"/>
-            <path d="M20 10 C22 13 21 15 19 17"/>
-            <path d="M20 10 C17 9 15 11 14 13"/>
-            <path d="M20 10 C23 8 24 10 23 13"/>
-        </symbol>
-        <symbol id="icon-whatsapp" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-        </symbol>
-    </svg>
-
-    <!-- Skip to content (Accessibility) -->
-    <a href="#hero" class="skip-link">Pular para o conteúdo</a>
-
-    <!-- Header -->
-    <header class="header" id="header">
-        <div class="header-inner">
-            <a href="#hero" class="brand">Karoline Jangola</a>
-            <nav class="nav" id="nav" aria-label="Menu principal">
-                <a href="#hero" class="nav-link">Início</a>
-                <a href="#tratamentos" class="nav-link">Tratamentos</a>
-                <a href="#depoimentos" class="nav-link">Depoimentos</a>
-                <a href="#faq" class="nav-link">Dúvidas</a>
-                <a href="#contato" class="nav-link">Contato</a>
-            </nav>
-            <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </header>
-
-    <main>
-
-    <!-- Hero -->
-    <section class="hero" id="hero">
-        <div class="hero-banner">
-            <div class="hero-content">
-                <h1>Terapia Humanizada</h1>
-                <p class="hero-subtitle">Psicanálise e Terapia para mulheres e crianças</p>
-            </div>
-        </div>
-    </section>
-
-    <div class="section-divider section-divider--cream" aria-hidden="true">
-        <svg width="40" height="20" color="#5a4a3a"><use href="#icon-leaf"/></svg>
-    </div>
-
-    <!-- CTA Banner -->
-    <section class="cta-banner">
-        <div class="container">
-            <h2 class="cta-banner-title">Você não precisa carregar tudo sozinha.</h2>
-            <p class="cta-banner-text">Se a carga está pesada demais, deixe-me ajudar você a encontrar o equilíbrio. Vamos conversar?</p>
-            <a href="https://wa.me/+5527995119177?text=Ol%C3%A1%2C%20vi%20seu%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener" class="btn btn-whatsapp">
-                <svg class="whatsapp-icon" width="20" height="20"><use href="#icon-whatsapp"/></svg>
-                Fale comigo pelo WhatsApp
-            </a>
-        </div>
-    </section>
-
-    <div class="section-divider section-divider--cream" aria-hidden="true">
-        <svg width="40" height="20" color="#5a4a3a"><use href="#icon-leaf"/></svg>
-    </div>
-
-    <!-- Quem Sou -->
-    <section class="section-about">
-        <div class="container">
-            <div class="about-content">
-                <img src="images/FotoProfissionalKarol.avif" alt="Karoline Jangola — Psicanalista e Terapeuta" class="about-img" width="360" height="480" loading="lazy">
-                <h2 class="section-title">Quem Sou</h2>
-                <p>Olá! Me chamo Karoline, sou psicanalista e terapeuta, mãe de três filhos, dentre eles um rapaz com TDAH e algumas comorbidades, e uma moça com TEA.</p>
-                <p>Escolhi fazer psicanálise para compreender melhor as condições deles e ajudá-los a lidar com seus sentimentos para terem uma melhor qualidade de vida.</p>
-                <p>Especializada no acompanhamento de crianças e pré-adolescentes, com certificado ISO 9001 de qualidade, e com uma abordagem cuidadosa e sensível, ajudo os pequenos a entenderem e expressarem suas emoções, sentimentos e desafios de forma segura e acolhedora.</p>
-                <p>Acredito que a infância e a pré-adolescência são períodos cruciais para o desenvolvimento emocional e, por isso, trabalho com um método que respeita o ritmo e as necessidades de cada criança, proporcionando um espaço para que se sintam ouvidas e compreendidas.</p>
-                <p>Meu objetivo é auxiliar na construção de uma autoestima saudável e no fortalecimento das habilidades emocionais para que eles possam lidar com os desafios dessa fase com mais confiança e equilíbrio.</p>
-                <p>Se você percebe que seu filho ou filha está enfrentando dificuldades emocionais, sociais ou comportamentais, estou aqui para oferecer o apoio necessário para que ele ou ela possa crescer de maneira plena e feliz.</p>
-            </div>
-        </div>
-    </section>
-
-    <div class="section-divider section-divider--alt" aria-hidden="true">
-        <svg width="40" height="20" color="#5a4a3a"><use href="#icon-leaf"/></svg>
-    </div>
-
-    <!-- Tratamentos -->
-    <section class="section section-treatments" id="tratamentos">
-        <div class="container">
-            <h2 class="section-title">Tratamentos</h2>
-            <div class="treatments-grid">
-
-                <div class="treatment-card">
-                    <div class="treatment-icon">&#128154;</div>
-                    <h3>Ansiedade</h3>
-                    <p>Insônia, pensamentos acelerados, tensão constante — sinais de que algo pede atenção. Juntas, investigamos as raízes dessa ansiedade para que você compreenda o que seus sintomas estão comunicando.</p>
-                </div>
-
-                <div class="treatment-card">
-                    <div class="treatment-icon">&#127793;</div>
-                    <h3>Depressão</h3>
-                    <p>Quando a tristeza se torna persistente e o vazio parece não ter fim, a terapia oferece um espaço seguro para explorar esses sentimentos e identificar os padrões que alimentam o sofrimento.</p>
-                </div>
-
-                <div class="treatment-card">
-                    <div class="treatment-icon">&#129309;</div>
-                    <h3>Relacionamentos</h3>
-                    <p>Dependência emocional, medo de abandono, conflitos recorrentes — padrões que se repetem sem percebermos. Exploramos como suas experiências moldaram a forma como você se relaciona.</p>
-                </div>
-
-                <div class="treatment-card">
-                    <div class="treatment-icon">&#127807;</div>
-                    <h3>Trauma</h3>
-                    <p>Experiências traumáticas deixam marcas que afetam como vivemos e nos relacionamos. A psicanálise oferece um espaço seguro, no seu ritmo, para processar essas experiências sem retraumatizar.</p>
-                </div>
-
-                <div class="treatment-card">
-                    <div class="treatment-icon">&#127775;</div>
-                    <h3>Terapia de Jovens</h3>
-                    <p>Crianças e pré-adolescentes muitas vezes não conseguem expressar o que sentem. Como mãe de um filho com TDAH e uma filha com TEA, compreendo de perto esses desafios.</p>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Depoimentos -->
-    <section class="section section-testimonials" id="depoimentos">
-        <div class="container">
-            <h2 class="section-title">Depoimentos</h2>
-            <div class="testimonials-grid">
-
-                <blockquote class="testimonial-card">
-                    <p class="testimonial-quote">"Estou sentindo uma diferença imensa na minha filha depois que ela começou a fazer terapia. Eu tinha muito preconceito com terapia online, achava que não funcionava. Hoje vejo que era puro preconceito. Terapia online funciona, sim! Sou muito grata pelo excelente trabalho e por todo cuidado com a minha filha."</p>
-                    <footer class="testimonial-author">
-                        <cite><strong>Roseane</strong></cite>
-                        <span>Mãe de paciente</span>
-                    </footer>
-                </blockquote>
-
-                <blockquote class="testimonial-card">
-                    <p class="testimonial-quote">"Você está me mostrando quem sou eu mesma. Sem ter necessidade de acreditar em migalhas, traições e enganações. Sou grata a Deus por ter colocado você no meu caminho."</p>
-                    <footer class="testimonial-author">
-                        <cite><strong>Ana Carolina</strong></cite>
-                        <span>Paciente adulta</span>
-                    </footer>
-                </blockquote>
-
-                <blockquote class="testimonial-card">
-                    <p class="testimonial-quote">"Sou muito grata por ti. Fez que pudesse ir atrás da minha paz. Sei que está difícil, mas creio que tudo vai ser organizado na minha cabeça e serei feliz com a minha própria companhia. Você me trouxe leveza, o que eu estava precisando."</p>
-                    <footer class="testimonial-author">
-                        <cite><strong>Lívia</strong></cite>
-                        <span>Paciente adulta</span>
-                    </footer>
-                </blockquote>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ -->
-    <section class="section section-faq" id="faq">
-        <div class="container">
-            <h2 class="section-title">Perguntas Frequentes</h2>
-            <div class="faq-list">
-
-                <details class="faq-item">
-                    <summary class="faq-question">Como funciona a primeira sessão?</summary>
-                    <div class="faq-answer">
-                        <p>A primeira sessão é um espaço de acolhimento onde conversamos sobre o que trouxe você até aqui. Não há julgamento — é um momento para você se sentir ouvida e começar a construir um vínculo de confiança. A partir daí, traçamos juntas o melhor caminho para o seu acompanhamento.</p>
-                    </div>
-                </details>
-
-                <details class="faq-item">
-                    <summary class="faq-question">Quanto tempo dura o tratamento?</summary>
-                    <div class="faq-answer">
-                        <p>Cada pessoa tem seu próprio ritmo. Algumas questões podem ser trabalhadas em poucos meses, enquanto outras pedem um acompanhamento mais longo. Conversamos sobre isso ao longo do processo, sempre respeitando o seu tempo.</p>
-                    </div>
-                </details>
-
-                <details class="faq-item">
-                    <summary class="faq-question">Como funciona o atendimento online?</summary>
-                    <div class="faq-answer">
-                        <p>As sessões acontecem por videochamada, com a mesma qualidade e privacidade do atendimento presencial. Você só precisa de um ambiente tranquilo e uma conexão com a internet. Atendo de qualquer lugar do Brasil.</p>
-                    </div>
-                </details>
-
-                <details class="faq-item">
-                    <summary class="faq-question">Você atende por plano de saúde?</summary>
-                    <div class="faq-answer">
-                        <p>Atualmente atendo apenas de forma particular. Porém, emito recibo para que você possa solicitar reembolso ao seu plano de saúde, caso ele ofereça essa possibilidade.</p>
-                    </div>
-                </details>
-
-                <details class="faq-item">
-                    <summary class="faq-question">Para quem é indicado o seu atendimento?</summary>
-                    <div class="faq-answer">
-                        <p>Atendo mulheres adultas e crianças/pré-adolescentes. Trabalho com questões como ansiedade, depressão, traumas, dificuldades nos relacionamentos e desafios emocionais da infância e adolescência.</p>
-                    </div>
-                </details>
-
-            </div>
-        </div>
-    </section>
-
-    <div class="section-divider section-divider--cream" aria-hidden="true">
-        <svg width="40" height="20" color="#5a4a3a"><use href="#icon-leaf"/></svg>
-    </div>
-
-    <!-- Contato -->
-    <section class="section section-contact" id="contato">
-        <div class="container">
-            <div class="contact-content">
-                <p class="contact-subtitle" style="font-weight:700">O primeiro passo é o mais importante. Estou aqui para te ouvir.</p>
-                <a href="https://wa.me/+5527995119177?text=Ol%C3%A1%2C%20vi%20seu%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener" class="btn btn-whatsapp btn-whatsapp-large">
-                    <svg class="whatsapp-icon" width="24" height="24"><use href="#icon-whatsapp"/></svg>
-                    Agende sua consulta
-                </a>
-                <p class="contact-microcopy">Ou escreva para <a href="mailto:karoljangola@gmail.com">karoljangola@gmail.com</a></p>
-            </div>
-        </div>
-    </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <p>&copy; <span id="year"></span> Karoline Jangola — Psicanalista e Terapeuta. Todos os direitos reservados.</p>
-                <div class="footer-links">
-                    <a href="https://www.instagram.com/psicanalista_karolinejangola" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/+5527995119177?text=Ol%C3%A1%2C%20vi%20seu%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener" class="whatsapp-float" aria-label="WhatsApp">
-        <svg width="28" height="28"><use href="#icon-whatsapp"/></svg>
-    </a>
-
-    <script src="script.js"></script>
-    <script>
-    (function(){
-        if(sessionStorage.getItem('_v'))return;
-        sessionStorage.setItem('_v','1');
-        fetch('https://n8n.w1r3d.dev/webhook/visitor',{
-            method:'POST',
-            headers:{'Content-Type':'application/json'},
-            body:JSON.stringify({
-                site:location.hostname,
-                page:location.pathname,
-                referrer:document.referrer||'direct',
-                ua:navigator.userAgent
-            })
-        }).catch(function(){});
-    })();
+    <!-- FAQ Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Como funciona a primeira sessão?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A primeira sessão é um espaço de acolhimento onde conversamos sobre o que trouxe você até aqui. Não há julgamento — é um momento para você se sentir ouvida e começar a construir um vínculo de confiança."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quanto tempo dura o tratamento?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cada pessoa tem seu próprio ritmo. Algumas questões podem ser trabalhadas em poucos meses, enquanto outras pedem um acompanhamento mais longo."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como funciona o atendimento online?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "As sessões acontecem por videochamada, com a mesma qualidade e privacidade do atendimento presencial. Você só precisa de um ambiente tranquilo e uma conexão com a internet. Atendo de qualquer lugar do Brasil."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Você atende por plano de saúde?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Atualmente atendo apenas de forma particular. Porém, emito recibo para que você possa solicitar reembolso ao seu plano de saúde, caso ele ofereça essa possibilidade."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Para quem é indicado o seu atendimento?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Atendo mulheres adultas e crianças/pré-adolescentes. Trabalho com questões como ansiedade, depressão, traumas, dificuldades nos relacionamentos e desafios emocionais da infância e adolescência."
+          }
+        }
+      ]
+    }
     </script>
-</body>
+    <script type="module" crossorigin src="/assets/index-DL0nRz3E.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CrR6NOxw.css">
+  </head>
+
+  <body>
+    <div id="root"></div>
+  </body>
 </html>
