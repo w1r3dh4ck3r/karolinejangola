@@ -148,5 +148,12 @@
     <script>
       (function(){try{fetch("https://n8n.w1r3d.dev/webhook/visitor",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({site:location.hostname,page:location.pathname,referrer:document.referrer||"direct",ua:navigator.userAgent}),keepalive:true})}catch(e){}})();
     </script>
+    <!-- Google Ads conversion: Bot Lead Capturado (fires on WhatsApp click) -->
+    <script>
+      document.addEventListener('click', function(e) {
+        var a = e.target.closest('a[href*="wa.me"]');
+        if (a) { gtag('event', 'conversion', {'send_to': 'AW-16583121961/shGzCIOqipYcEKm4ueM9'}); }
+      });
+    </script>
   </body>
 </html>
