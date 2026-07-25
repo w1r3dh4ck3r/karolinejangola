@@ -14,6 +14,10 @@
 
 **Verification:** clean `npm ci && npm run build` exit 0; Playwright browser-compare vs the live apex = zero deltas; all constants asserted. See `docs/reference/rebuild-verification.md`.
 
+## 2026-07-25 — DEPLOY GOTCHA: GitHub Pages needs `.nojekyll`
+
+The first deploy push FAILED silently at GitHub's "pages build and deployment" Actions step: **Jekyll runs by default and its Liquid parser errored on `docs/superpowers/plans/2026-07-25-source-reconstruction.md`** (a `{{q,a}` in the text reads as an unterminated Liquid `{{ }}` variable). The old bundle-only repo built fine because it had no `{{ }}` markdown; the reconstruction added docs that trip Jekyll. **Fix: a root `.nojekyll` file** (also in `app/public/.nojekyll` so rebuilds keep it) disables Jekyll → Pages serves the prebuilt files as-is. Keep `.nojekyll` forever. If a deploy ever "succeeds on push but the site doesn't update", check the `pages build and deployment` Actions run for a Jekyll/Liquid error first.
+
 ## 2026-07-25 (same day) — Content changes sprint (DONE, reviewed, on main, unpushed)
 
 The 3 changes Mark asked for, implemented + reviewed on `main` (commits `8efdb7d` + a source-consistency follow-up):
