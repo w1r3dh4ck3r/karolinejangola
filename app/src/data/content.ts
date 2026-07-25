@@ -19,23 +19,14 @@ export interface SobreContent {
   paragraphs: [string, string, string, string]
   /** Highlighted closing line, styled bold, separate from the paragraph array. */
   highlight: string
-  stats: [StatTile, StatTile]
-}
-
-export interface AudienceCard {
-  key: string
-  icon: IconName
-  /** Card heading, e.g. "Para mim" / "Para meu filho/a". */
-  label: string
-  description: string
-  ctaLabel: string
-  /** Raw (un-encoded) WhatsApp pre-filled message text — build the wa.me link with encodeURIComponent. */
-  ctaText: string
+  stats: [StatTile]
 }
 
 export interface ParaQuemContent {
   eyebrow: string
   h2: string
+  description: string
+  ctaLabel: string
 }
 
 export interface SectionHeading {
@@ -81,41 +72,20 @@ export const sobre: SobreContent = {
   paragraphs: [
     'Olá, me chamo Karoline. Sou psicanalista e terapeuta, mãe de três filhos e tenho uma vivência muito próxima com o universo do desenvolvimento infantil, incluindo o TDAH e o TEA.',
     'Minha jornada na psicanálise começou justamente pelo desejo de compreender melhor essas condições e oferecer um suporte mais sensível, acolhedor e eficaz — tanto para meus filhos quanto para outras famílias que passam por desafios semelhantes.',
-    'Hoje, sou especializada no acompanhamento de crianças e pré-adolescentes, com certificação de qualidade ISO 9001. Meu trabalho é ajudar os pequenos a reconhecerem, entenderem e expressarem suas emoções de forma segura, respeitando o tempo e a individualidade de cada um.',
+    'Hoje, sou especializada no acompanhamento de crianças e pré-adolescentes. Meu trabalho é ajudar os pequenos a reconhecerem, entenderem e expressarem suas emoções de forma segura, respeitando o tempo e a individualidade de cada um.',
     'Se você percebe que seu filho ou filha está enfrentando dificuldades emocionais, sociais ou comportamentais, posso te ajudar nesse processo com um atendimento humanizado e cuidadoso.',
   ],
   highlight: 'Estou aqui para acolher, orientar e caminhar junto com sua família.',
-  stats: [
-    { value: '100%', label: 'atendimento online' },
-    { value: 'ISO 9001', label: 'certificado de qualidade' },
-  ],
+  stats: [{ value: '100%', label: 'atendimento online' }],
 }
 
 export const paraQuem: ParaQuemContent = {
   eyebrow: 'Para quem é este atendimento?',
   h2: 'Encontre o seu caminho',
+  description:
+    'Para mulheres que enfrentam ansiedade, depressão, trauma ou dificuldades nos relacionamentos — e para crianças e adolescentes com desafios emocionais, comportamentais ou de aprendizado (TDAH, TEA, ansiedade, dificuldades na escola). Um espaço seguro e acolhedor, no tempo de cada um.',
+  ctaLabel: 'Fale comigo pelo WhatsApp',
 }
-
-export const audienceCards: AudienceCard[] = [
-  {
-    key: 'adult',
-    icon: 'heart',
-    label: 'Para mim',
-    description:
-      'Mulheres que enfrentam ansiedade, depressão, trauma ou dificuldades nos relacionamentos. Um espaço seguro, só seu, para o que você carrega — sem julgamento.',
-    ctaLabel: 'Quero cuidar de mim',
-    ctaText: 'Olá, vim pelo site e gostaria de atendimento para mim.',
-  },
-  {
-    key: 'child',
-    icon: 'sparkles',
-    label: 'Para meu filho/a',
-    description:
-      'Crianças e adolescentes com desafios emocionais, comportamentais ou de aprendizado — TDAH, TEA, ansiedade, dificuldades na escola.',
-    ctaLabel: 'Quero ajuda para meu filho/a',
-    ctaText: 'Olá, vim pelo site e gostaria de atendimento para meu filho/a.',
-  },
-]
 
 export const tratamentosHeading: SectionHeading = {
   eyebrow: 'Como posso ajudar',
@@ -136,7 +106,7 @@ export const contato: ContatoContent = {
   h2: 'O primeiro passo é o mais importante',
   body: 'Estou aqui para te ouvir. Vamos encontrar juntas o melhor caminho para você.',
   ctaLabel: 'Agende sua consulta',
-  infoText: 'Atendimento online para todo o Brasil',
+  infoText: 'Atendimento online para o Brasil e para brasileiros que vivem no exterior',
   form: {
     intro: 'Prefere escrever primeiro? Deixe seus dados e entrarei em contato.',
     fields: [

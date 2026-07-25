@@ -22,7 +22,10 @@ export const professionalServiceJsonLd = {
   email: site.email,
   image: OG_IMAGE,
   priceRange: '$$',
-  areaServed: { '@type': 'Country', name: 'Brasil' },
+  areaServed: [
+    { '@type': 'Country', name: 'Brasil' },
+    { '@type': 'Place', name: 'Brasileiros no exterior (atendimento online)' },
+  ],
   serviceType: ['Psicanálise', 'Terapia Online', 'Terapia Infantil', 'Terapia para Mulheres'],
   openingHoursSpecification: [
     {
@@ -69,7 +72,7 @@ export function faqPageJsonLd(items: FaqItem[]) {
 export const homeSeo: Omit<SeoProps, 'jsonLd'> = {
   title: 'Karoline Jangola | Psicanalista e Terapeuta Online',
   description:
-    'Psicanalista e terapeuta online especializada em mulheres e crianças. Tratamento de ansiedade, depressão, trauma e terapia infantil (TDAH/TEA). Atendimento online para todo o Brasil.',
+    'Psicanalista e terapeuta online especializada em mulheres e crianças. Tratamento de ansiedade, depressão, trauma e terapia infantil (TDAH/TEA). Atendimento online para o Brasil e brasileiros no exterior.',
   canonical: SITE_URL,
   og: {
     title: 'Karoline Jangola | Psicanalista e Terapeuta Online',
@@ -78,7 +81,7 @@ export const homeSeo: Omit<SeoProps, 'jsonLd'> = {
     // writes it verbatim into meta[name=description], og:description, AND
     // twitter:description — there is no separate og-specific string.
     description:
-      'Psicanalista e terapeuta online especializada em mulheres e crianças. Tratamento de ansiedade, depressão, trauma e terapia infantil (TDAH/TEA). Atendimento online para todo o Brasil.',
+      'Psicanalista e terapeuta online especializada em mulheres e crianças. Tratamento de ansiedade, depressão, trauma e terapia infantil (TDAH/TEA). Atendimento online para o Brasil e brasileiros no exterior.',
     image: OG_IMAGE,
     type: 'website',
     url: SITE_URL,
