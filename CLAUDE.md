@@ -11,8 +11,8 @@ Brazilian women (25-50) seeking therapy for themselves or their children. They a
 ### Aesthetic Direction
 - **Visual tone:** Quiet and calm — let the content breathe
 - **Direction:** Emotional/organic — softer shapes, nature-inspired, flowing layouts
-- **Palette:** Warm browns (#5a4a3a), cream (#f8f6f3), soft natural accents
-- **Typography:** Playfair Display (headings) + Inter (body) — elegance meets clarity
+- **Palette (as built):** sage green `#4f7260`, terracotta `#c97a5e` (CTAs/accents), cream `#f8f5f1` (background), warm-dark `#3e3531` (text) — full token table in `docs/reference/current-site-inventory.md` §4
+- **Typography (as built):** DM Serif Display (headings) + DM Sans (body)
 - **Anti-references:** Avoid clinical/sterile medical sites, avoid loud SaaS landing pages, avoid generic template aesthetics
 - **Theme:** Light mode only
 
