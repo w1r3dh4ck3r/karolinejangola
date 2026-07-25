@@ -1,17 +1,21 @@
 import { useEffect } from 'react'
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { trackVisit } from './lib/tracking'
 import Home from './pages/Home'
 import Blog from './pages/Blog'
 import BlogPost from './pages/BlogPost'
 import NotFound from './pages/NotFound'
 
+/**
+ * Matches the live bundle's visitor-tracking component (_v in
+ * assets/index-NAF8EB0S.js): S.useEffect(()=>{...fetch webhook...},[]) with
+ * no useLocation call at all, so it fires once per hard page load, not on
+ * every client-side route change.
+ */
 function RouteTracker() {
-  const location = useLocation()
-
   useEffect(() => {
     trackVisit()
-  }, [location.pathname])
+  }, [])
 
   return null
 }

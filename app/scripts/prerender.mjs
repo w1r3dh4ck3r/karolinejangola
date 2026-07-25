@@ -121,12 +121,30 @@ function startStaticServer(root, port) {
   })
 }
 
+// Regression guard against the duplicate-head-tag class of bug (hit twice):
+// a stray second <Seo>/head render duplicates these tags instead of
+// replacing them. Scoped to dist/index.html — the one page most likely to
+// pick up a duplicate og/twitter tag if <Seo> or the prerender pass ever
+// double-mounts.
+function assertSingleMetaTags(html, relPath) {
+  const ogCount = (html.match(/<meta property="og:description"/g) ?? []).length
+  const twitterCount = (html.match(/<meta name="twitter:card"/g) ?? []).length
+  if (ogCount !== 1 || twitterCount !== 1) {
+    throw new Error(
+      `prerender: dist/${relPath} has ${ogCount} og:description tag(s) and ${twitterCount} twitter:card tag(s) — expected exactly 1 of each.`
+    )
+  }
+}
+
 function writeSnapshot(outputs, html) {
   for (const relPath of outputs) {
     const outPath = path.join(distDir, relPath)
     fs.mkdirSync(path.dirname(outPath), { recursive: true })
     fs.writeFileSync(outPath, html)
     console.log(`  wrote dist/${relPath} (${html.length} bytes)`)
+    if (relPath === 'index.html') {
+      assertSingleMetaTags(html, relPath)
+    }
   }
 }
 

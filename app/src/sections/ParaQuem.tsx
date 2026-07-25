@@ -1,13 +1,8 @@
 import { Phone } from 'lucide-react'
 import { audienceCards, paraQuem } from '../data/content'
 import { ICONS } from '../lib/icons'
-import { WA } from '../lib/whatsapp'
+import { waUrl } from '../lib/whatsapp'
 import WhatsAppLink from '../components/WhatsAppLink'
-
-const CTA_LINKS: Record<string, string> = {
-  adult: WA.paraMim,
-  child: WA.paraFilho,
-}
 
 export default function ParaQuem() {
   return (
@@ -35,7 +30,7 @@ export default function ParaQuem() {
                   {card.description}
                 </p>
                 <WhatsAppLink
-                  href={CTA_LINKS[card.key]}
+                  href={waUrl(card.ctaText)}
                   className="inline-flex items-center gap-2 self-start rounded-lg bg-terracotta/10 px-5 py-2.5 font-sans text-sm font-medium text-terracotta transition-colors hover:bg-terracotta/20"
                 >
                   <Phone className="h-4 w-4" />

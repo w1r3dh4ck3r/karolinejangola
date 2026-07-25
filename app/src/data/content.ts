@@ -5,8 +5,6 @@ export interface HeroContent {
   h1: string
   body: string
   ctaLabel: string
-  /** Raw (un-encoded) WhatsApp pre-filled message text — build the wa.me link with encodeURIComponent. */
-  ctaText: string
 }
 
 export interface StatTile {
@@ -59,8 +57,6 @@ export interface ContatoContent {
   h2: string
   body: string
   ctaLabel: string
-  /** Raw (un-encoded) WhatsApp pre-filled message text — build the wa.me link with encodeURIComponent. */
-  ctaText: string
   infoText: string
   form: {
     intro: string
@@ -77,7 +73,6 @@ export const hero: HeroContent = {
   h1: 'Você não precisa carregar tudo sozinha',
   body: 'Psicanálise e terapia para mulheres e crianças. Se a carga está pesada demais, deixe-me ajudar você a encontrar o equilíbrio.',
   ctaLabel: 'Fale comigo pelo WhatsApp',
-  ctaText: 'Olá, vi seu site e gostaria de mais informações.',
 }
 
 export const sobre: SobreContent = {
@@ -141,7 +136,6 @@ export const contato: ContatoContent = {
   h2: 'O primeiro passo é o mais importante',
   body: 'Estou aqui para te ouvir. Vamos encontrar juntas o melhor caminho para você.',
   ctaLabel: 'Agende sua consulta',
-  ctaText: 'Olá, vi seu site e gostaria de mais informações.',
   infoText: 'Atendimento online para todo o Brasil',
   form: {
     intro: 'Prefere escrever primeiro? Deixe seus dados e entrarei em contato.',

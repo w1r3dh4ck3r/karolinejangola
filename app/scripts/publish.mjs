@@ -89,6 +89,20 @@ function main() {
   const copied = []
   copyRecursive(distDir, repoRoot, copied)
 
+  // Step 4b: CNAME safety guard. publish.mjs never touches CNAME (it's
+  // denylisted above), but a corrupted/typo'd CNAME at repo root would drop
+  // the apex domain and take the live site dark, so verify it post-publish
+  // regardless of what wrote it.
+  const cnamePath = path.join(repoRoot, 'CNAME')
+  const expectedCname = 'karolinejangola.com'
+  const actualCname = fs.existsSync(cnamePath) ? fs.readFileSync(cnamePath, 'utf8').trim() : null
+  if (actualCname !== expectedCname) {
+    console.error(
+      `publish: CNAME safety check FAILED. Expected "${expectedCname}", found ${actualCname === null ? 'no CNAME file' : `"${actualCname}"`} at ${path.relative(repoRoot, cnamePath)}. Refusing to leave a corrupted CNAME in place — this would drop the apex domain.`
+    )
+    process.exit(1)
+  }
+
   // Step 5: summary.
   console.log(`publish: removed ${removed.length} generated path(s) from repo root:`)
   for (const name of removed) console.log(`  - ${name}`)
