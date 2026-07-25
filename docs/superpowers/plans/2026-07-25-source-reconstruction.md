@@ -27,7 +27,9 @@
   - email `karoljangola@gmail.com`; Instagram `https://www.instagram.com/psicanalista_karolinejangola`
   - `CNAME` = `karolinejangola.com`
 - **Fonts:** DM Serif Display (headings) + DM Sans (body). **Not** Playfair/Inter.
-- **Deploy unchanged:** build output must land at the repo root (`index.html`, `assets/`, `blog/**`, `404.html`) with `emptyOutDir:false` so `.git/` and `docs/` are never wiped.
+- **Deploy unchanged, but publish is deliberate:** the app builds to `app/dist/` (safe, self-contained). A separate **publish** step (Task 10) clears the root `assets/` + generated HTML and copies `dist/`→root. The repo root **stays the current live site** until publish is run intentionally — no intermediate build ever overwrites the served root. `.git/`, `docs/`, `app/` are never touched by publish.
+- **Asset URLs preserved (no re-hashing):** the 2 real media assets keep their exact current URLs `/assets/hero-therapy-CgSB5jl3.webp` and `/assets/therapist-portrait-DhhPXLzJ.avif` by living in `app/public/assets/` (Vite copies `public/` verbatim, no content-hashing). `site.ts` references these literal paths. Do **not** `import` them (that would re-hash).
+- **.gitignore invariants:** `app/node_modules/` and `app/dist/` are ignored; the tracked deployable output at the repo root (`index.html`, `assets/`, `blog/**`, `404.html`, `sitemap.xml`, `CNAME`, `robots.txt`, favicons, `og-image.jpg`) stays tracked. A `.gitignore` rule must never match the root `assets/`.
 - **Node 24 / npm 11** (verified available).
 - **Do not carry forward:** `placeholder.svg` and the 8 orphaned old `assets/index-*.js|css` bundles (inventory §5).
 - **Never push.** Nothing deploys until Mark validates. The pre-rebuild live dist is tagged `pre-rebuild-dist` (local restore point).
@@ -51,35 +53,36 @@
     "dev": "vite",
     "build": "tsc -b && vite build && node scripts/prerender.mjs",
     "build:app": "tsc -b && vite build",
+    "publish:site": "node scripts/publish.mjs",
     "preview": "vite preview"
   }
 }
 ```
-- [ ] **Step 2: `vite.config.ts`** — build to repo root, never empty it:
+`build` produces the finished site inside `app/dist/` (vite build + prerender). `publish:site` is the **separate, deliberate** step that copies `dist/`→repo root (Task 10). No `build` ever writes to the root.
+- [ ] **Step 2: `vite.config.ts`** — build to the self-contained `app/dist/` (NOT the repo root; publishing to root is a separate deliberate step in Task 10):
 ```ts
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import path from 'node:path'
 export default defineConfig({
   plugins: [react()],
-  publicDir: 'public',            // CNAME, robots, favicons, og-image copied to output
+  publicDir: 'public',   // CNAME, robots, favicons, og-image, assets/*.webp|avif copied verbatim
   build: {
-    outDir: path.resolve(__dirname, '..'),
-    emptyOutDir: false,           // repo root holds .git/ and docs/ — NEVER wipe
+    outDir: 'dist',      // app/dist — cleared each build, safe; root is never overwritten by a build
     assetsDir: 'assets',
   },
 })
 ```
 - [ ] **Step 3: `app/index.html`** — the Vite entry template. Head must contain, verbatim, everything from inventory §1 `index.html`: charset, GSC meta, viewport, title, description, keywords, author, canonical, favicon links, all og:/twitter: meta, the gtag loader `<script async src=…AW-16583121961>` + inline `gtag('config','AW-16583121961')`, and `<div id="root"></div>`. The module script + stylesheet are injected by Vite. (Per-page/JSON-LD head is added in Task 8.)
 - [ ] **Step 4: `main.tsx` + minimal `App.tsx`** — render a router with a single placeholder route returning `<div>ok</div>` so the build is verifiable before real content exists.
-- [ ] **Step 5: Move static passthrough files into `app/public/`.** Copy the current root `CNAME`, `robots.txt`, `favicon.ico`, `favicon-192.png`, `apple-touch-icon.png`, `og-image.jpg` into `app/public/` (verbatim; binaries unchanged). They will be re-emitted to root on build.
-- [ ] **Step 6: Build and verify output lands at root.**
+- [ ] **Step 5: Static passthrough files into `app/public/`.** Copy the current root `CNAME`, `robots.txt`, `favicon.ico`, `favicon-192.png`, `apple-touch-icon.png`, `og-image.jpg` into `app/public/` (verbatim; binaries unchanged). Also copy the 2 media assets **keeping their exact hashed filenames** into `app/public/assets/`: `hero-therapy-CgSB5jl3.webp`, `therapist-portrait-DhhPXLzJ.avif` (from the current root `assets/`). Vite copies `public/` verbatim → the URLs `/assets/hero-therapy-CgSB5jl3.webp` and `/assets/therapist-portrait-DhhPXLzJ.avif` are preserved exactly (no re-hash).
+- [ ] **Step 6: `.gitignore` for `app/`** — ignore `node_modules/` and `dist/`. Confirm the **root** `.gitignore` does not match `assets/` (the deployable root output must stay tracked).
+- [ ] **Step 7: Build and verify output lands in `app/dist/` (NOT root).**
 Run: `cd app && npm install && npm run build:app`
-Expected: `../index.html` exists and references a hashed `/assets/index-*.js`; `../assets/` contains the new bundle; `../CNAME` still = `karolinejangola.com`. `.git/` and `docs/` untouched.
-- [ ] **Step 7: Verify the head survived the build.**
-Run: `grep -c "AW-16583121961" ../index.html && grep -c "Ruj7meDK4FLvod" ../index.html`
+Expected: `dist/index.html` exists, references a hashed `/assets/index-*.js`, and `dist/CNAME` = `karolinejangola.com`; `dist/assets/hero-therapy-CgSB5jl3.webp` present. The **repo root is unchanged** (still the current live site).
+- [ ] **Step 8: Verify the head survived the build.**
+Run: `grep -c "AW-16583121961" dist/index.html && grep -c "Ruj7meDK4FLvod" dist/index.html`
 Expected: both ≥ 1 (gtag + GSC meta present in built index.html).
-- [ ] **Step 8: Commit.** `git add app/ .gitignore && git commit -m "feat: scaffold Vite+React+TS app building to repo root"`
+- [ ] **Step 9: Commit.** `git add app/ && git commit -m "feat: scaffold Vite+React+TS app (builds to app/dist)"`
 
 ---
 
@@ -96,7 +99,7 @@ Expected: both ≥ 1 (gtag + GSC meta present in built index.html).
 - [ ] **Step 2: `tailwind.config.ts`** — `content: ['./index.html','./src/**/*.{ts,tsx}']`. Extend `theme.colors` mapping each token via `hsl(var(--x) / <alpha-value>)` (shadcn pattern): `background, foreground, card, primary, 'primary-foreground', secondary, accent, 'accent-foreground', muted, 'muted-foreground', border, sage, 'sage-light', terracotta, 'terracotta-dark', cream, 'cream-dark'`. Extend `fontFamily: { serif: ['DM Serif Display','Georgia','serif'], sans: ['DM Sans','system-ui','sans-serif'] }`.
 - [ ] **Step 3: `postcss.config.js`** — `{ plugins: { tailwindcss: {}, autoprefixer: {} } }`.
 - [ ] **Step 4: Build and verify tokens + fonts in the emitted CSS.**
-Run: `cd app && npm run build:app && grep -o "DM Serif Display" ../assets/*.css | head -1 && grep -o "150 18% 38%" ../assets/*.css | head -1`
+Run: `cd app && npm run build:app && grep -o "DM Serif Display" dist/assets/*.css | head -1 && grep -o "150 18% 38%" dist/assets/*.css | head -1`
 Expected: both found (fonts + sage token compiled in).
 - [ ] **Step 5: Commit.** `git commit -am "feat: design tokens, DM fonts, global stylesheet"`
 
@@ -166,7 +169,7 @@ export function fireConversion(): void {
   }
 }
 ```
-- [ ] **Step 4: `tracking.ts`** — the exact n8n `fetch` from inventory §3 (`{site,page,referrer,ua}`, `keepalive:true`, try/catch-silent). Add a guard so it is a **no-op when `navigator.webdriver` is true** (prevents the prerender browser from POSTing during snapshotting).
+- [ ] **Step 4: `tracking.ts`** — the exact n8n `fetch` from inventory §3 (`{site,page,referrer,ua}`, `keepalive:true`, try/catch-silent). Add a guard so it is a **no-op when `navigator.webdriver` is true** (helps prevent the prerender browser POSTing). NOTE: `navigator.webdriver` is not reliably set by every Playwright launch config — it is a belt, not the braces. Task 9 ALSO route-aborts the webhook; keep both.
 - [ ] **Step 5: `global.d.ts`** — `declare global { interface Window { gtag?: (...args:any[])=>void; dataLayer?: any[] } }`.
 - [ ] **Step 6: Run the test — expect PASS.**
 - [ ] **Step 7: Commit.** `git commit -am "feat: gtag conversion, whatsapp, visitor-webhook libs"`
@@ -233,7 +236,7 @@ Fields exactly per inventory §2 contato (`contact-nome` required, `contact-tele
 - [ ] **Step 7: Assemble `Home.tsx`** in the exact section order.
 - [ ] **Step 8: Build + browser compare against live** homepage (side-by-side): section order, copy, CTAs, form. Resolve the two UNVERIFIED items (mobile menu, FAQ accordion animation) by matching the live site.
 Run: `cd app && npm run build:app`
-Verify in built `assets/*.js`: `grep -c "formspree.io/f/xeevlzlb" ../assets/*.js` ≥1; `grep -c "shGzCIOqipYcEKm4ueM9" ../assets/*.js` ≥1; `grep -c "557996491276" ../assets/*.js` ≥1.
+Verify in built `dist/assets/*.js`: `grep -c "formspree.io/f/xeevlzlb" dist/assets/*.js` ≥1; `grep -c "shGzCIOqipYcEKm4ueM9" dist/assets/*.js` ≥1; `grep -c "557996491276" dist/assets/*.js` ≥1.
 - [ ] **Step 9: Commit.** `git commit -am "feat: homepage sections + assembly (byte-faithful copy)"`
 
 ---
@@ -275,52 +278,64 @@ Verify in built `assets/*.js`: `grep -c "formspree.io/f/xeevlzlb" ../assets/*.js
 
 ---
 
-### Task 9: Playwright prerender + sitemap regeneration
+### Task 9: Playwright prerender + sitemap regeneration (operates on `app/dist/`)
 
 **Files:**
 - Create: `app/scripts/prerender.mjs`
-- Output (regenerated): root `index.html` (prerendered homepage), `404.html`, `blog/index.html`, `blog/<slug>/index.html` ×3, `sitemap.xml`
+- Output (written into `app/dist/`, overwriting the vite-built shells): `dist/index.html` (prerendered homepage), `dist/404.html`, `dist/blog/index.html`, `dist/blog/<slug>/index.html` ×3, `dist/sitemap.xml`
 
 **Interfaces:**
-- Consumes: the built app at repo root; the 3 blog slugs.
-- Produces: static per-route HTML with fully-rendered content + head, and a refreshed sitemap. This runs as the final step of `npm run build`.
+- Consumes: the vite build in `app/dist/`; the 3 blog slugs.
+- Produces: static per-route HTML with fully-rendered content + head, and a refreshed sitemap — all inside `dist/`. This runs as the final step of `npm run build`. (Publishing `dist/`→root is Task 10, separate.)
 
 - [ ] **Step 1: Write `prerender.mjs`.** Logic:
-  1. Start a static server rooted at the repo root (the freshly built output) — e.g. a tiny `http.createServer` + `sirv`/manual file serve, or `vite preview`. Serve `index.html` for unknown paths so the SPA router can resolve any route.
+  1. Start a static server rooted at **`app/dist/`** (the freshly built output). Serve `index.html` for unknown paths so the SPA router can resolve any route.
   2. Launch Playwright chromium. Routes to snapshot: `['/','/blog','/blog/ansiedade-sintomas-tratamento','/blog/como-saber-se-preciso-de-terapia','/blog/terapia-online-funciona']`.
-  3. For each route: `page.route('**/n8n.w1r3d.dev/**', r => r.abort())` (belt-and-suspenders with the Task 4 webdriver guard); `page.goto(url, {waitUntil:'networkidle'})`; wait for a hydration marker (e.g. `#root` has children / a known heading is present); capture `'<!doctype html>\n' + await page.content()`.
-  4. Write: `/` → `index.html` **and** `404.html` (same homepage snapshot, SPA fallback); `/blog` → `blog/index.html`; each article → `blog/<slug>/index.html`.
-  5. The captured HTML keeps the `<script type=module>` tag so the served static page still hydrates client-side (matches current behavior).
-- [ ] **Step 2: Regenerate `sitemap.xml`** — 5 URLs (inventory §7) with `lastmod` = today (`2026-07-25`), same priorities/changefreq. (Today's date is passed in / read from `new Date` at build time — acceptable in a build script.)
+  3. For each route: abort the webhook with a broad glob — `page.route('**n8n.w1r3d.dev**', r => r.abort())` (Playwright may not match a narrow `**/host/**` form; keep this broad). `page.goto(url, {waitUntil:'networkidle'})`.
+  4. **Wait for a concrete post-effect marker, NOT just network state** — the `<Seo>` component injects JSON-LD via a React effect that may not have flushed at `networkidle`: `await page.waitForSelector('script[type="application/ld+json"]')` (and for `/`, also wait for the `#contato` form / a known heading). Only then capture `'<!doctype html>\n' + await page.content()`.
+  5. Write into `dist/`: `/` → `index.html` **and** `404.html` (same homepage snapshot, SPA fallback); `/blog` → `blog/index.html`; each article → `blog/<slug>/index.html`.
+  6. The captured HTML keeps the `<script type=module>` tag so the served static page still hydrates client-side (matches current behavior).
+- [ ] **Step 2: Regenerate `dist/sitemap.xml`** — 5 URLs (inventory §7) with `lastmod` = build date, same priorities/changefreq. (Read from `new Date()` in the build script — acceptable there.)
 - [ ] **Step 3: Run the full build.**
 Run: `cd app && npm run build`
-Expected: exit 0; the 5 HTML files + sitemap written.
-- [ ] **Step 4: Verify prerenders carry CURRENT content, not stale.**
-Run (from repo root):
+Expected: exit 0; the 5 HTML files + sitemap written under `dist/`.
+- [ ] **Step 4: Verify prerenders carry CURRENT content AND the effect-injected head.**
+Run (from `app/`):
 ```
-grep -c "557996491276" index.html && ! grep -q "5527995119177" index.html \
+cd dist \
+ && grep -c "557996491276" index.html && ! grep -q "5527995119177" index.html \
  && grep -c "Para quem é este atendimento" index.html \
  && grep -c "Quem sou eu" index.html \
  && grep -c "formspree.io/f/xeevlzlb" index.html \
- && grep -c "AW-16583121961" index.html
+ && grep -c "AW-16583121961" index.html \
+ && grep -c "ProfessionalService" index.html \
+ && grep -c "FAQPage" index.html
 ```
-Expected: new phone present, OLD phone absent, audience split present, "Quem sou eu" present, form + gtag present.
+Expected: new phone present, OLD phone absent, audience split present, "Quem sou eu" present, form + gtag present, **and both JSON-LD types present** (proves the `<Seo>` effect flushed before capture — the core prerender risk).
 - [ ] **Step 5: Commit.** `git commit -am "feat: Playwright prerender of all routes + fresh sitemap"`
 
 ---
 
-### Task 10: Clean orphaned artifacts + finalize output shape
+### Task 10: Publish `dist/` → repo root (the deliberate deploy-shape step)
 
 **Files:**
-- Delete: root `placeholder.svg`, the 8 orphaned `assets/index-*.{js,css}` bundles listed in inventory §5 (keep only the current build's hashed bundle + the 2 real media assets `hero-therapy-*.webp`, `therapist-portrait-*.avif`).
-- Verify: root `index.html`, `assets/`, `blog/**`, `404.html`, `CNAME`, `robots.txt`, `sitemap.xml`, favicons, `og-image.jpg` all present and correct.
+- Create: `app/scripts/publish.mjs`
+- Modify (via the script): root `index.html`, `404.html`, `assets/`, `blog/**`, `sitemap.xml` (replaced from `dist/`); delete root `placeholder.svg` and the 8 orphaned `index-*.{js,css}` bundles (inventory §5)
+- Preserve: `.git/`, `docs/`, `app/`, `CNAME`, `robots.txt`, favicons, `og-image.jpg` (the last four also come through `dist/`, identical)
 
-- [ ] **Step 1: Confirm the media assets Vite emitted** match the referenced hashes in `site.ts` (`hero-therapy-CgSB5jl3.webp`, `therapist-portrait-DhhPXLzJ.avif`). If Vite re-hashes them, update `site.ts` references to the emitted names (or import them so Vite manages the URLs) — the requirement is the built HTML points at real emitted files. Prefer importing the images in a module so hashing is automatic.
-- [ ] **Step 2: Delete orphans.** Remove `placeholder.svg` and the 8 stale bundles (they are only referenced by files we are overwriting).
-- [ ] **Step 3: Verify no dangling references.**
+This is the ONLY step that changes the served repo root. Run it deliberately; the `pre-rebuild-dist` tag is the restore point.
+
+- [ ] **Step 1: Write `publish.mjs`.** Logic: (a) refuse to run if `app/dist/index.html` is missing (build first). (b) Remove the root generated set: `assets/` (whole dir), `index.html`, `404.html`, `blog/`, `sitemap.xml`, `placeholder.svg`. Never touch `.git`, `docs`, `app`, `.gitignore`, `.claude`, `CLAUDE.md`, `ARCHITECTURE.md`, `STACK.md`, `WORKFLOW.md`. (c) Copy every file from `dist/` → repo root, recursively. (d) Print a summary of files written.
+- [ ] **Step 2: Build then publish.**
+Run: `cd app && npm run build && npm run publish:site`
+Expected: root now holds the reconstructed site; `dist/`→root copy reported.
+- [ ] **Step 3: Verify the published root shape.**
+Run (from repo root): `ls index.html 404.html sitemap.xml CNAME robots.txt og-image.jpg && ls assets/ && ls blog/ && test ! -e placeholder.svg && echo NO_PLACEHOLDER`
+Expected: all served files present; `placeholder.svg` gone.
+- [ ] **Step 4: Verify no dangling references to orphaned bundles.**
 Run: `grep -rE "index-(BFxxg0Sd|CVgSuWO4|B1oDKpVj|BDMY6MmL|BOijH4fk|BsQtoF4y|CrR6NOxw|DfDBf3s-|DzrNWhAe|zp-71f8a)" . --include=*.html || echo CLEAN`
 Expected: `CLEAN`.
-- [ ] **Step 4: Commit.** `git commit -am "chore: remove orphaned bundles and placeholder.svg"`
+- [ ] **Step 5: Commit.** `git add -A && git commit -m "feat: publish reconstructed build to repo root (replaces compiled-only dist)"`
 
 ---
 
@@ -328,19 +343,19 @@ Expected: `CLEAN`.
 
 **Files:** none (verification only). Produce a short `docs/reference/rebuild-verification.md` recording the results.
 
-- [ ] **Step 1: Clean rebuild from scratch.**
-Run: `cd app && rm -rf node_modules && npm ci && npm run build`
-Expected: exit 0 on Node 24 / npm 11.
-- [ ] **Step 2: Assert every preserved constant** in the built output (root): gtag `AW-16583121961`, conversion `shGzCIOqipYcEKm4ueM9`, GSC `Ruj7meDK4FLvod`, Formspree `f/xeevlzlb`, n8n `n8n.w1r3d.dev/webhook/visitor`, phone `557996491276`, email `karoljangola@gmail.com`, Instagram handle, `CNAME`=`karolinejangola.com`. Record each grep result.
-- [ ] **Step 3: Serve the built root locally and browser-compare** against `https://www.karolinejangola.com`: homepage section order + copy, both audience CTAs open WhatsApp with the correct pre-filled text, form posts to Formspree (network tab), `/blog` + 3 articles, DM fonts + sage/terracotta palette, mobile menu, FAQ accordion. Note any diff.
-- [ ] **Step 4: Confirm the 3 improvements-over-live** in prerenders: correct phone, audience split present, contact form present; sitemap `lastmod` refreshed.
+- [ ] **Step 1: Clean rebuild from scratch, then publish.**
+Run: `cd app && rm -rf node_modules dist && npm ci && npm run build && npm run publish:site`
+Expected: exit 0 on Node 24 / npm 11; root republished.
+- [ ] **Step 2: Assert every preserved constant** in the published root: gtag `AW-16583121961`, conversion `shGzCIOqipYcEKm4ueM9`, GSC `Ruj7meDK4FLvod`, Formspree `f/xeevlzlb`, n8n `n8n.w1r3d.dev/webhook/visitor`, phone `557996491276`, email `karoljangola@gmail.com`, Instagram handle, `CNAME`=`karolinejangola.com`. Record each grep result.
+- [ ] **Step 3: Serve the published root locally and browser-compare** against `https://www.karolinejangola.com`: homepage section order + copy, both audience CTAs open WhatsApp with the correct pre-filled text, form posts to Formspree (network tab), `/blog` + 3 articles, DM fonts + sage/terracotta palette, mobile menu, FAQ accordion. Note any diff.
+- [ ] **Step 4: Confirm the 3 improvements-over-live** in the prerendered root files: correct phone, audience split present, contact form present; sitemap `lastmod` refreshed.
 - [ ] **Step 5: Write `rebuild-verification.md`** with the pass/fail table and any known cosmetic deltas. Commit. **Do NOT push — hand to the Gemini review gate.**
 
 ---
 
 ## Self-Review (author checklist — completed)
 
-**Spec coverage:** Every spec requirement maps to a task — stack/layout (T1), tokens/fonts (T2), content incl. preserved ISO + audience split (T3/T6), gtag/whatsapp/n8n/formspree integrations (T4/T6), components incl. mobile nav + accordion (T5), homepage order (T6), blog/routes/404 (T7), JSON-LD + head + GSC/OG (T1/T8), prerender-all-routes-with-current-content + sitemap (T9), orphan cleanup + CNAME/robots/favicons/og preserved (T1/T10), clean-build + browser parity acceptance (T11). Non-goals (content changes, CI migration, byte-identical bundles) are explicitly excluded.
+**Spec coverage:** Every spec requirement maps to a task — stack/layout (T1), tokens/fonts (T2), content incl. preserved ISO + audience split (T3/T6), gtag/whatsapp/n8n/formspree integrations (T4/T6), components incl. mobile nav + accordion (T5), homepage order (T6), blog/routes/404 (T7), JSON-LD + head + GSC/OG (T1/T8), prerender-all-routes-with-current-content + sitemap (T9), deliberate publish `dist/`→root + orphan removal + CNAME/robots/favicons/og preserved (T1/T10), clean-build + browser parity acceptance against published root (T11). Non-goals (content changes, CI migration, byte-identical bundles) are explicitly excluded. **Build/publish separation:** no build ever writes the served root; only T10's `publish:site` does — the root stays the current live site until deliberately republished, and `pre-rebuild-dist` is the restore point.
 
 **Placeholder scan:** No TBD/TODO. Content is referenced to specific inventory sections (a durable committed repo file), not hand-waved. The only deliberately deferred micro-decisions (mobile-menu + FAQ-animation exact behavior) are the inventory's UNVERIFIED items, resolved by live browser comparison in T5/T6/T11 — flagged, not hidden.
 
