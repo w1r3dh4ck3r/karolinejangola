@@ -1,0 +1,101 @@
+@import "https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 40 33% 96%;
+  --foreground: 20 12% 22%;
+  --card: 40 30% 93%;
+  --primary: 150 18% 38%;
+  --primary-foreground: 40 33% 96%;
+  --secondary: 30 30% 88%;
+  --secondary-foreground: 20 12% 22%;
+  --accent: 16 50% 58%;
+  --accent-foreground: 40 33% 96%;
+  --muted: 35 20% 90%;
+  --muted-foreground: 25 10% 42%;
+  --border: 35 18% 84%;
+  --sage: 150 18% 38%;
+  --sage-light: 150 14% 52%;
+  --terracotta: 16 50% 58%;
+  --terracotta-dark: 16 44% 50%;
+  --cream: 40 33% 96%;
+  --cream-dark: 38 28% 88%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+}
+
+@keyframes reveal-up {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-reveal-up {
+  animation: reveal-up 0.7s ease forwards;
+}
+
+.prose-blog {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 2rem;
+  color: hsl(var(--muted-foreground));
+}
+
+.prose-blog h2 {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: 1.5rem;
+  margin-top: 2.5rem;
+  color: hsl(var(--foreground));
+}
+
+.prose-blog h3 {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: 1.25rem;
+  margin-top: 2rem;
+  color: hsl(var(--foreground));
+}
+
+.prose-blog strong {
+  font-weight: 500;
+  color: hsl(var(--foreground));
+}
+
+.prose-blog em {
+  font-style: italic;
+  color: hsl(var(--foreground));
+}
+
+.prose-blog ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+}
+
+.prose-blog li {
+  margin-bottom: 0.5rem;
+}
+
+.prose-blog a {
+  font-weight: 500;
+  color: hsl(var(--primary));
+  text-decoration: underline;
+  text-decoration-color: hsl(var(--primary) / 0.4);
+  text-underline-offset: 4px;
+}
+
+.prose-blog a:hover {
+  color: hsl(var(--terracotta));
+}
