@@ -55,7 +55,7 @@ Everything this session is now **pushed to `origin/main` and LIVE** on karolinej
 **Deploy pipeline is healthy now** — push `main` → Pages auto-builds → live in ~1–2 min. (Earlier this session the first deploy stalled twice: the Jekyll/`.nojekyll` failure left Pages in an `errored` state that stopped auto-building; recovered by `.nojekyll` + `gh api --method POST repos/w1r3dh4ck3r/karolinejangola/pages/builds`. If a future push doesn't go live, check `gh api .../pages` status and POST a build.)
 
 **Open (Mark's, none blocking):**
-- **Remove health-plan reimbursement claim** (`app/src/data/faq.ts:21`): the "Você atende por plano de saúde?" answer says she emits a recibo for plano-de-saúde reembolso — Mark wants that clause GONE. Delete the `Porém, emito recibo … caso ele ofereça essa possibilidade.` sentence; keep only `Atualmente atendo apenas de forma particular.` Then rebuild+publish+push.
+- **[DONE 2026-07-25]** Removed the health-plan reimbursement claim (`app/src/data/faq.ts`): the "Você atende por plano de saúde?" answer is now just `Atualmente atendo apenas de forma particular.` — built, published, pushed (`0f49069`), live-verified (reembolso/recibo = 0).
 - Treatments copy — Mark rewrites himself (the 5 cards still have adult framing incl. "Relacionamentos"; only the one `pré-adolescentes` word was swapped).
 - Swap the two adult-women testimonials (Ana Carolina, Lívia) — kept for now.
 - Female-grammar decision: some copy still addresses a female reader (hero H1 "Você não precisa carregar tudo **sozinha**"); now that the reader is a parent, decide keep-as-mothers vs neutral. `CLAUDE.md` female-grammar rule left untouched pending this.
