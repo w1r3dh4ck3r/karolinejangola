@@ -1,11 +1,14 @@
 import { Link } from 'react-router-dom'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
+import Seo from '../components/Seo'
 import { blogPosts } from '../data/blog'
+import { blogIndexSeo } from '../data/seo'
 
 export default function Blog() {
   return (
     <>
+      <Seo {...blogIndexSeo} />
       <Nav />
       <main className="min-h-screen bg-background pb-20 pt-24">
         <div className="container mx-auto max-w-6xl px-6 md:px-12">

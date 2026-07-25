@@ -3,7 +3,9 @@ import { Link, useParams } from 'react-router-dom'
 import BlogCta from '../components/BlogCta'
 import Footer from '../components/Footer'
 import Nav from '../components/Nav'
+import Seo from '../components/Seo'
 import { blogPosts } from '../data/blog'
+import { blogPostSeo } from '../data/seo'
 import NotFound from './NotFound'
 
 export default function BlogPost() {
@@ -14,6 +16,7 @@ export default function BlogPost() {
 
   return (
     <>
+      <Seo {...blogPostSeo(post)} />
       <Nav />
       <main className="min-h-screen bg-background pb-20 pt-24">
         <div className="container mx-auto max-w-3xl px-6 md:px-12">
