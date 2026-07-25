@@ -9,6 +9,10 @@ export interface BlogPost {
   readTime: string
   excerpt: string
   bodyHtml: string
+  /** Category pills shown on the blog index card cover, in render order. */
+  tags: string[]
+  /** Tailwind `bg-gradient-to-br` stop pair for the card's cover block. */
+  coverTone: string
 }
 
 // Order matches inventory §6 (live bundle array `Ld`), not the stale prerendered

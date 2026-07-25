@@ -6,6 +6,8 @@ export const terapiaOnlineFunciona: BlogPost = {
   date: '27 de março de 2026',
   readTime: '7 min de leitura',
   excerpt: 'Terapia online é tão eficaz quanto o atendimento presencial? Entenda como funciona, o que diz a ciência e as vantagens do atendimento remoto para sua saúde mental.',
+  tags: ['terapia online', 'psicologia', 'atendimento remoto'],
+  coverTone: 'from-terracotta/15 to-accent/10',
   bodyHtml: `
 <p>Se você já pensou em fazer terapia mas ficou na dúvida se o formato online realmente funciona, você não está sozinho. É uma pergunta legítima e importante — afinal, estamos falando de um processo que envolve confiança, escuta profunda e conexão genuína entre terapeuta e paciente.</p>
 

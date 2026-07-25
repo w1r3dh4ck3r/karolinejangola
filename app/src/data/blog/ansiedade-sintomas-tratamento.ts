@@ -6,6 +6,8 @@ export const ansiedadeSintomasTratamento: BlogPost = {
   date: '27 de março de 2026',
   readTime: '7 min de leitura',
   excerpt: 'O Brasil é o país mais ansioso do mundo. Entenda os sintomas físicos e emocionais da ansiedade, quando ela se torna um transtorno e como a terapia pode ajudar.',
+  tags: ['ansiedade', 'saúde mental', 'tratamento'],
+  coverTone: 'from-secondary to-cream-dark',
   bodyHtml: `
 <p>O Brasil ocupa um lugar que ninguém deseja: é o <strong>país com a maior prevalência de transtornos de ansiedade no mundo</strong>, segundo dados da Organização Mundial da Saúde (OMS). Mais de 18 milhões de brasileiros convivem com algum transtorno ansioso — e esse número não para de crescer.</p>
 

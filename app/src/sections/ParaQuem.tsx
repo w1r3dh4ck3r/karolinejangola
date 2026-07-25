@@ -1,4 +1,4 @@
-import { MessageCircle } from 'lucide-react'
+import { Phone } from 'lucide-react'
 import { audienceCards, paraQuem } from '../data/content'
 import { ICONS } from '../lib/icons'
 import { WA } from '../lib/whatsapp'
@@ -38,7 +38,7 @@ export default function ParaQuem() {
                   href={CTA_LINKS[card.key]}
                   className="inline-flex items-center gap-2 self-start rounded-lg bg-terracotta/10 px-5 py-2.5 font-sans text-sm font-medium text-terracotta transition-colors hover:bg-terracotta/20"
                 >
-                  <MessageCircle className="h-4 w-4" />
+                  <Phone className="h-4 w-4" />
                   {card.ctaLabel}
                 </WhatsAppLink>
               </div>

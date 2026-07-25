@@ -73,8 +73,12 @@ export const homeSeo: Omit<SeoProps, 'jsonLd'> = {
   canonical: SITE_URL,
   og: {
     title: 'Karoline Jangola | Psicanalista e Terapeuta Online',
+    // Matches the live bundle's Seo component (Xo in
+    // assets/index-NAF8EB0S.js): it takes a single `description` prop and
+    // writes it verbatim into meta[name=description], og:description, AND
+    // twitter:description — there is no separate og-specific string.
     description:
-      'Psicanalista e terapeuta online especializada em mulheres e crianças. Tratamento de ansiedade, depressão, trauma e terapia infantil. Atendimento para todo o Brasil.',
+      'Psicanalista e terapeuta online especializada em mulheres e crianças. Tratamento de ansiedade, depressão, trauma e terapia infantil (TDAH/TEA). Atendimento online para todo o Brasil.',
     image: OG_IMAGE,
     type: 'website',
     url: SITE_URL,

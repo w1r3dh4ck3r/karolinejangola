@@ -28,19 +28,33 @@ export default function Blog() {
             {blogPosts.map((post) => (
               <Link
                 key={post.slug}
-                className="group flex flex-col gap-3 overflow-hidden rounded-2xl border border-border bg-card p-6 transition-shadow hover:shadow-md"
+                className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-shadow hover:shadow-md"
                 to={`/blog/${post.slug}`}
               >
-                <h2 className="font-serif text-xl leading-snug text-foreground transition-colors group-hover:text-primary">
-                  {post.title}
-                </h2>
-                <p className="flex-1 font-sans text-sm leading-relaxed text-muted-foreground">
-                  {post.excerpt}
-                </p>
-                <div className="mt-2 flex items-center gap-3 font-sans text-xs text-muted-foreground">
-                  <span>{post.date}</span>
-                  <span className="h-1 w-1 rounded-full bg-border" />
-                  <span>{post.readTime}</span>
+                <div className={`flex h-44 items-end bg-gradient-to-br p-5 ${post.coverTone}`}>
+                  <div className="flex flex-wrap gap-2">
+                    {post.tags.map((tag, index) => (
+                      <span
+                        key={`${post.slug}-${tag}`}
+                        className={`rounded-full px-2.5 py-1 text-xs font-medium ${index === 2 ? 'bg-secondary text-secondary-foreground' : 'bg-primary/10 text-primary'}`}
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div className="flex flex-1 flex-col gap-3 p-6">
+                  <h2 className="font-serif text-xl leading-snug text-foreground transition-colors group-hover:text-primary">
+                    {post.title}
+                  </h2>
+                  <p className="flex-1 font-sans text-sm leading-relaxed text-muted-foreground">
+                    {post.excerpt}
+                  </p>
+                  <div className="mt-2 flex items-center gap-3 font-sans text-xs text-muted-foreground">
+                    <span>{post.date}</span>
+                    <span className="h-1 w-1 rounded-full bg-border" />
+                    <span>{post.readTime}</span>
+                  </div>
                 </div>
               </Link>
             ))}

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import type { FormEvent } from 'react'
-import { AtSign, Mail, MessageCircle } from 'lucide-react'
+import { AtSign, Mail, Phone } from 'lucide-react'
 import { contato } from '../data/content'
 import { site } from '../data/site'
 import { WA } from '../lib/whatsapp'
@@ -55,7 +55,7 @@ export default function Contato() {
           href={WA.general}
           className="inline-flex items-center gap-3 rounded-lg bg-terracotta px-7 py-3.5 font-sans font-medium text-cream shadow-lg transition-all duration-200 hover:bg-terracotta-dark hover:shadow-xl active:scale-[0.97]"
         >
-          <MessageCircle className="h-4 w-4" />
+          <Phone className="h-4 w-4" />
           {contato.ctaLabel}
         </WhatsAppLink>
 
@@ -113,7 +113,7 @@ export default function Contato() {
 
         <div className="mt-16 flex flex-wrap justify-center gap-10 font-sans text-sm text-primary-foreground/65">
           <div className="flex items-center gap-2">
-            <MessageCircle className="h-4 w-4" />
+            <Phone className="h-4 w-4" />
             <span>{contato.infoText}</span>
           </div>
           <div className="flex items-center gap-2">

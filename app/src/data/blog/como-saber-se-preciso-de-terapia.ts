@@ -6,6 +6,8 @@ export const comoSaberSePrecisoDeTerapia: BlogPost = {
   date: '27 de março de 2026',
   readTime: '6 min de leitura',
   excerpt: 'Descubra os 7 sinais que indicam que pode ser hora de buscar terapia. Aprenda a reconhecer quando o suporte profissional pode transformar sua qualidade de vida.',
+  tags: ['terapia', 'saúde mental', 'autoconhecimento'],
+  coverTone: 'from-sage/20 to-primary/10',
   bodyHtml: `
 <p>Muitas pessoas passam anos convivendo com dificuldades emocionais sem buscar ajuda, seja por não reconhecer os sinais, por medo do julgamento ou por acreditar que "não é grave o suficiente". A verdade é que não é preciso estar em crise para se beneficiar da terapia — ela é um espaço de cuidado e crescimento para qualquer momento da vida.</p>
 

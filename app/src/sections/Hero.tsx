@@ -1,4 +1,4 @@
-import { MessageCircle } from 'lucide-react'
+import { Phone } from 'lucide-react'
 import { hero } from '../data/content'
 import { site } from '../data/site'
 import { WA } from '../lib/whatsapp'
@@ -39,7 +39,7 @@ export default function Hero() {
             href={WA.general}
             className="inline-flex items-center gap-3 rounded-lg bg-terracotta px-7 py-3.5 font-sans font-medium text-cream shadow-lg transition-all duration-200 hover:bg-terracotta-dark hover:shadow-xl active:scale-[0.97]"
           >
-            <MessageCircle className="h-4 w-4" />
+            <Phone className="h-4 w-4" />
             {hero.ctaLabel}
           </WhatsAppLink>
         </div>
