@@ -24,4 +24,4 @@ Repositioned copy (mulheres e crianças → crianças e adolescentes site-wide),
 - www flip: `CNAME`, `app/public/CNAME`, `app/scripts/publish.mjs` guard, `app/src/data/seo.ts` canonical if needed.
 - After edits: `cd app && npm run build && npm run publish:site`, then `approved-push main`.
 
-<!-- session-state-sync: last written by session 1f22c527 at 2026-07-25 18:25:13 -0300 -->
+<!-- session-state-sync: last written by session 1f22c527 at 2026-07-25 18:40:13 -0300 -->

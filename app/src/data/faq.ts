@@ -18,7 +18,7 @@ export const faq: FaqItem[] = [
   },
   {
     q: 'Você atende por plano de saúde?',
-    a: 'Atualmente atendo apenas de forma particular. Porém, emito recibo para que você possa solicitar reembolso ao seu plano de saúde, caso ele ofereça essa possibilidade.',
+    a: 'Atualmente atendo apenas de forma particular.',
   },
   {
     q: 'Para quem é indicado o seu atendimento?',
