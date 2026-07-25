@@ -27,6 +27,8 @@ export interface SobreContent {
 export interface AudienceCard {
   key: string
   icon: IconName
+  /** Card heading, e.g. "Para mim" / "Para meu filho/a". */
+  label: string
   description: string
   ctaLabel: string
   /** Raw (un-encoded) WhatsApp pre-filled message text — build the wa.me link with encodeURIComponent. */
@@ -87,7 +89,7 @@ export const sobre: SobreContent = {
     'Hoje, sou especializada no acompanhamento de crianças e pré-adolescentes, com certificação de qualidade ISO 9001. Meu trabalho é ajudar os pequenos a reconhecerem, entenderem e expressarem suas emoções de forma segura, respeitando o tempo e a individualidade de cada um.',
     'Se você percebe que seu filho ou filha está enfrentando dificuldades emocionais, sociais ou comportamentais, posso te ajudar nesse processo com um atendimento humanizado e cuidadoso.',
   ],
-  highlight: '💬 Estou aqui para acolher, orientar e caminhar junto com sua família.',
+  highlight: 'Estou aqui para acolher, orientar e caminhar junto com sua família.',
   stats: [
     { value: '100%', label: 'atendimento online' },
     { value: 'ISO 9001', label: 'certificado de qualidade' },
@@ -103,6 +105,7 @@ export const audienceCards: AudienceCard[] = [
   {
     key: 'adult',
     icon: 'heart',
+    label: 'Para mim',
     description:
       'Mulheres que enfrentam ansiedade, depressão, trauma ou dificuldades nos relacionamentos. Um espaço seguro, só seu, para o que você carrega — sem julgamento.',
     ctaLabel: 'Quero cuidar de mim',
@@ -111,6 +114,7 @@ export const audienceCards: AudienceCard[] = [
   {
     key: 'child',
     icon: 'sparkles',
+    label: 'Para meu filho/a',
     description:
       'Crianças e adolescentes com desafios emocionais, comportamentais ou de aprendizado — TDAH, TEA, ansiedade, dificuldades na escola.',
     ctaLabel: 'Quero ajuda para meu filho/a',
@@ -144,7 +148,7 @@ export const contato: ContatoContent = {
     fields: [
       {
         id: 'contact-nome',
-        name: 'contact-nome',
+        name: 'nome',
         label: 'Nome *',
         type: 'text',
         placeholder: 'Seu nome',
@@ -152,7 +156,7 @@ export const contato: ContatoContent = {
       },
       {
         id: 'contact-telefone',
-        name: 'contact-telefone',
+        name: 'telefone',
         label: 'WhatsApp / Telefone',
         type: 'tel',
         placeholder: '(79) 99999-9999',
@@ -160,7 +164,7 @@ export const contato: ContatoContent = {
       },
       {
         id: 'contact-mensagem',
-        name: 'contact-mensagem',
+        name: 'mensagem',
         label: 'O que te trouxe até aqui? (opcional)',
         type: 'textarea',
         placeholder: 'Pode compartilhar um pouco sobre o que está sentindo...',

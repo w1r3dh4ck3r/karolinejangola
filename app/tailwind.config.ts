@@ -28,6 +28,9 @@ export default {
         serif: ['DM Serif Display', 'Georgia', 'serif'],
         sans: ['DM Sans', 'system-ui', 'sans-serif'],
       },
+      boxShadow: {
+        soft: '0 18px 45px rgba(71, 57, 47, .12)',
+      },
     },
   },
   plugins: [],

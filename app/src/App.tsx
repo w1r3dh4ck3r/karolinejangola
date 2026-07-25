@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { trackVisit } from './lib/tracking'
+import Home from './pages/Home'
 
 function RouteTracker() {
   const location = useLocation()
@@ -17,7 +18,7 @@ function App() {
     <BrowserRouter>
       <RouteTracker />
       <Routes>
-        <Route path="/" element={<div>ok</div>} />
+        <Route path="/" element={<Home />} />
       </Routes>
     </BrowserRouter>
   )
