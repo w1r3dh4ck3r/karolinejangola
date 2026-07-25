@@ -51,49 +51,39 @@ const MIME_TYPES = {
 // `script[type="application/ld+json"]` on /blog or /blog/:slug would hang
 // until the Playwright timeout, since that route never renders one. So the
 // JSON-LD wait is scoped to '/' only.
-const routes = [
+//
+// Only '/' and '/blog' are static. Per-post routes are NOT hardcoded here —
+// this script can't cheaply import the TS blogPosts array (ESM script vs.
+// Vite-built TS data), and a hardcoded slug list would silently stop
+// prerendering/sitemap-listing a new post the moment Mark adds one (still
+// client-navigable, just invisible to crawlers). Instead the /blog route is
+// rendered first, then its own DOM — the same source blogPosts renders
+// into <Link to={`/blog/${post.slug}`}> — is scraped for every
+// `/blog/<slug>` anchor; see deriveBlogPostSlugs() in main().
+const staticRoutes = [
   {
     path: '/',
     outputs: ['index.html', '404.html'],
     extraWaits: ['script[type="application/ld+json"]', '#contato'],
   },
   { path: '/blog', outputs: ['blog/index.html'] },
-  {
-    path: '/blog/ansiedade-sintomas-tratamento',
-    outputs: ['blog/ansiedade-sintomas-tratamento/index.html'],
-  },
-  {
-    path: '/blog/como-saber-se-preciso-de-terapia',
-    outputs: ['blog/como-saber-se-preciso-de-terapia/index.html'],
-  },
-  {
-    path: '/blog/terapia-online-funciona',
-    outputs: ['blog/terapia-online-funciona/index.html'],
-  },
 ]
 
-// 5 sitemap URLs (docs/reference/current-site-inventory.md §7), same
-// priority/changefreq as the current live sitemap; lastmod refreshed to
-// today's build date.
-const sitemapEntries = [
-  { loc: `${SITE_URL}/`, changefreq: 'monthly', priority: '1.0' },
-  { loc: `${SITE_URL}/blog`, changefreq: 'weekly', priority: '0.8' },
-  {
-    loc: `${SITE_URL}/blog/como-saber-se-preciso-de-terapia`,
-    changefreq: 'monthly',
-    priority: '0.7',
-  },
-  {
-    loc: `${SITE_URL}/blog/terapia-online-funciona`,
-    changefreq: 'monthly',
-    priority: '0.7',
-  },
-  {
-    loc: `${SITE_URL}/blog/ansiedade-sintomas-tratamento`,
-    changefreq: 'monthly',
-    priority: '0.7',
-  },
-]
+// Same priority/changefreq as the current live sitemap
+// (docs/reference/current-site-inventory.md §7); lastmod refreshed to
+// today's build date. Per-post entries are appended by buildSitemapEntries()
+// once the post slugs are derived.
+function buildSitemapEntries(postSlugs) {
+  return [
+    { loc: `${SITE_URL}/`, changefreq: 'monthly', priority: '1.0' },
+    { loc: `${SITE_URL}/blog`, changefreq: 'weekly', priority: '0.8' },
+    ...postSlugs.map((slug) => ({
+      loc: `${SITE_URL}/blog/${slug}`,
+      changefreq: 'monthly',
+      priority: '0.7',
+    })),
+  ]
+}
 
 function startStaticServer(root, port) {
   return new Promise((resolve, reject) => {
@@ -148,7 +138,7 @@ function writeSnapshot(outputs, html) {
   }
 }
 
-function writeSitemap() {
+function writeSitemap(sitemapEntries) {
   const today = new Date().toISOString().slice(0, 10)
   const urls = sitemapEntries
     .map(
@@ -165,6 +155,49 @@ function writeSitemap() {
   console.log(`  wrote dist/sitemap.xml (lastmod=${today})`)
 }
 
+// Navigates to `path` and waits for the Seo effect to flush (title/meta/
+// canonical are set via useEffect, not present in the initial static HTML
+// shell) before any route-specific extra markers (e.g. JSON-LD, which only
+// the homepage renders). state:'attached' because <link>/<script> are never
+// "visible" (no rendered box) — the default visible-wait times out on these
+// element types even once they exist in the DOM. Returns the open page so
+// the caller can both read its content and (for '/blog') scrape its DOM;
+// closing the page is the caller's responsibility.
+async function renderPage(browser, routePath, extraWaits) {
+  console.log(`Prerendering ${routePath}`)
+  const page = await browser.newPage()
+  // Block the visitor-tracking webhook during snapshotting — broad glob
+  // because a narrow '**/host/**' form may not match Playwright's route
+  // matcher.
+  await page.route('**n8n.w1r3d.dev**', (r) => r.abort())
+
+  await page.goto(`http://127.0.0.1:${PORT}${routePath}`, { waitUntil: 'networkidle' })
+
+  await page.waitForSelector('link[rel="canonical"][data-seo-managed]', { state: 'attached' })
+  for (const marker of extraWaits ?? []) {
+    await page.waitForSelector(marker, { state: 'attached' })
+  }
+
+  return page
+}
+
+// Single source of truth for per-post routes: scrapes the just-rendered
+// /blog page's own DOM for every `/blog/<slug>` anchor — the same markup
+// blogPosts (app/src/data/blog/index.ts) renders into <Link
+// to={`/blog/${post.slug}`}>. Deliberately NOT a hardcoded slug list, so a
+// new post Mark adds to blogPosts is prerendered and sitemapped without
+// touching this script.
+async function deriveBlogPostSlugs(blogIndexPage) {
+  const hrefs = await blogIndexPage.$$eval('a[href^="/blog/"]', (anchors) =>
+    anchors.map((a) => a.getAttribute('href'))
+  )
+  const slugs = [...new Set(hrefs)]
+    .filter((href) => /^\/blog\/[^/]+$/.test(href))
+    .map((href) => href.slice('/blog/'.length))
+    .sort()
+  return slugs
+}
+
 async function main() {
   if (!fs.existsSync(path.join(distDir, 'index.html'))) {
     throw new Error(`dist/index.html not found at ${distDir} — run vite build first`)
@@ -174,31 +207,32 @@ async function main() {
   console.log(`Static server serving ${distDir} on http://127.0.0.1:${PORT}`)
 
   const browser = await chromium.launch()
+  let postSlugs = []
   try {
-    for (const route of routes) {
-      console.log(`Prerendering ${route.path}`)
-      const page = await browser.newPage()
-      // Block the visitor-tracking webhook during snapshotting — broad
-      // glob because a narrow '**/host/**' form may not match Playwright's
-      // route matcher.
-      await page.route('**n8n.w1r3d.dev**', (r) => r.abort())
-
-      await page.goto(`http://127.0.0.1:${PORT}${route.path}`, { waitUntil: 'networkidle' })
-
-      // Wait for the Seo effect to flush (title/meta/canonical are set via
-      // useEffect, not present in the initial static HTML shell) before
-      // any route-specific extra markers (e.g. JSON-LD, which only the
-      // homepage renders). state:'attached' because <link>/<script> are
-      // never "visible" (no rendered box) — the default visible-wait times
-      // out on these element types even once they exist in the DOM.
-      await page.waitForSelector('link[rel="canonical"][data-seo-managed]', { state: 'attached' })
-      for (const marker of route.extraWaits ?? []) {
-        await page.waitForSelector(marker, { state: 'attached' })
-      }
-
+    for (const route of staticRoutes) {
+      const page = await renderPage(browser, route.path, route.extraWaits)
       const html = '<!doctype html>\n' + (await page.content())
       writeSnapshot(route.outputs, html)
 
+      if (route.path === '/blog') {
+        postSlugs = await deriveBlogPostSlugs(page)
+      }
+
+      await page.close()
+    }
+
+    if (postSlugs.length === 0) {
+      throw new Error(
+        'prerender: derived zero /blog/<slug> links from the rendered /blog page — refusing to ' +
+          'publish an empty blog. Check blogPosts (app/src/data/blog/index.ts) and the Blog page markup.'
+      )
+    }
+    console.log(`Derived ${postSlugs.length} blog post route(s): ${postSlugs.join(', ')}`)
+
+    for (const slug of postSlugs) {
+      const page = await renderPage(browser, `/blog/${slug}`)
+      const html = '<!doctype html>\n' + (await page.content())
+      writeSnapshot([`blog/${slug}/index.html`], html)
       await page.close()
     }
   } finally {
@@ -206,7 +240,7 @@ async function main() {
     await new Promise((resolve) => server.close(resolve))
   }
 
-  writeSitemap()
+  writeSitemap(buildSitemapEntries(postSlugs))
   console.log('Prerender complete.')
 }
 
