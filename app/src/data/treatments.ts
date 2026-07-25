@@ -30,6 +30,6 @@ export const treatments: Treatment[] = [
   {
     icon: 'sparkles',
     title: 'Terapia de Jovens',
-    body: 'Crianças e pré-adolescentes muitas vezes não conseguem expressar o que sentem. Como mãe de um filho com TDAH e uma filha com TEA, compreendo de perto esses desafios.',
+    body: 'Crianças e adolescentes muitas vezes não conseguem expressar o que sentem. Como mãe de um filho com TDAH e uma filha com TEA, compreendo de perto esses desafios.',
   },
 ]

@@ -26,6 +26,6 @@ Brazilian women (25-50) seeking therapy for themselves or their children. They a
 ## Copy Rules (non-negotiable)
 
 - All Portuguese copy uses exclusively **female grammar** — e.g., "cansada", "você está pronta", never the masculine form
-- Target audience is women only — write to them directly
+- Target audience is children & adolescents; the site speaks to their parents/guardians
 - Forms and documents must **not** include a field for selecting the professional's gender
 - Client is on Windows 11 — any troubleshooting instructions must be Windows-native

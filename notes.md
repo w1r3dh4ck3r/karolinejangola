@@ -31,3 +31,19 @@ Reviewed (approved, no regression: conversion/Formspree/n8n intact, both JSON-LD
 - **Nothing pushed.** All work (reconstruction + these 3 changes) sits on local `main`, ahead of `origin/main`. Awaiting Mark's push approval to deploy (push of `main` = live via GitHub Pages).
 - Mark to pick canonical host for the TLS fix: www-primary (recommended — matches existing canonical tags; I'd set `CNAME` to `www.karolinejangola.com`) vs apex-primary (change canonical in `seo.ts`). Immediate cert fix = re-save the GitHub Pages custom domain (DNS already correct).
 - Optional enhancement not done: scroll-to-top on client-side nav (kept faithful to the old bundle's mount-once behavior).
+
+## 2026-07-25 (same day) — Audience reposition: children & adolescents only, no women
+
+Practice repositioning: dropped "women" from every audience descriptor, site now speaks to children & adolescents exclusively (parents/guardians as readers). Precise word-level sweep, no touch to testimonials or other treatment-card copy:
+- `content.ts`: hero body ("para mulheres e crianças" → "para crianças e adolescentes"), Sobre paragraph ("crianças e pré-adolescentes" → "crianças e adolescentes"), Para-quem description (removed the women clause entirely, kept only the children/adolescents sentence).
+- `faq.ts`: "Para quem é indicado" answer ("mulheres adultas e crianças/pré-adolescentes" → "crianças e adolescentes").
+- `treatments.ts`: one word in the "Terapia de Jovens" card body ("pré-adolescentes" → "adolescentes") — rest of that card left for the owner to rewrite separately.
+- `seo.ts` (3x) + `app/index.html` (meta description, og:description, twitter:description): "especializada em mulheres e crianças" → "especializada em crianças e adolescentes".
+- `Sobre.tsx` portrait alt text: "especializada em crianças e mulheres" → "especializada em crianças e adolescentes".
+- `CLAUDE.md`: Copy Rules target-audience line updated to children & adolescents / parents-guardians. Female-grammar rule left untouched (separate review, per brief).
+
+**Bug found + fixed along the way:** `app/scripts/publish.mjs`'s copy-denylist blocked every dotfile at repo root unconditionally, so it threw on `.nojekyll` (which is legitimately published content, copied from `app/public/.nojekyll`) and left the repo root half-deleted (index.html/assets/blog/sitemap.xml/404.html all removed, nothing copied back) on the first `publish:site` run since `.nojekyll` was added (commit `dc961e2`). Fixed by adding an explicit `.nojekyll` carve-out in `isCopyDenylisted`, same pattern already used implicitly for CNAME/robots.txt. Re-ran publish — root fully restored, exit 0.
+
+**Verification:** `npm run build` exit 0, `npm run publish:site` exit 0 (18 files copied), `npx vitest run` 4/4 pass. Served root: 0 hits for "mulheres e crianças", "mulheres adultas", "pré-adolescentes"; "crianças e adolescentes" present (5x); no regression — "para brasileiros que vivem no exterior" still present, ProfessionalService + FAQPage JSON-LD both present, Formspree/n8n/conversion-label/AW-id intact in `assets/*.js`, old phone `5527995119177` absent.
+
+**Next steps:** same as above — nothing pushed, awaiting Mark's push approval + canonical-host decision. Full task report: `.superpowers/reposition-report.md`.

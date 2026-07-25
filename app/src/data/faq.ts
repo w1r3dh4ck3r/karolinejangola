@@ -22,6 +22,6 @@ export const faq: FaqItem[] = [
   },
   {
     q: 'Para quem é indicado o seu atendimento?',
-    a: 'Atendo mulheres adultas e crianças/pré-adolescentes. Trabalho com questões como ansiedade, depressão, traumas, dificuldades nos relacionamentos e desafios emocionais da infância e adolescência.',
+    a: 'Atendo crianças e adolescentes. Trabalho com questões como ansiedade, depressão, traumas, dificuldades nos relacionamentos e desafios emocionais da infância e adolescência.',
   },
 ]

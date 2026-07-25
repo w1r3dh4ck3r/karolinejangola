@@ -62,7 +62,7 @@ export interface ContatoContent {
 export const hero: HeroContent = {
   eyebrow: 'Terapia Humanizada',
   h1: 'Você não precisa carregar tudo sozinha',
-  body: 'Psicanálise e terapia para mulheres e crianças. Se a carga está pesada demais, deixe-me ajudar você a encontrar o equilíbrio.',
+  body: 'Psicanálise e terapia para crianças e adolescentes. Se a carga está pesada demais, deixe-me ajudar você a encontrar o equilíbrio.',
   ctaLabel: 'Fale comigo pelo WhatsApp',
 }
 
@@ -72,7 +72,7 @@ export const sobre: SobreContent = {
   paragraphs: [
     'Olá, me chamo Karoline. Sou psicanalista e terapeuta, mãe de três filhos e tenho uma vivência muito próxima com o universo do desenvolvimento infantil, incluindo o TDAH e o TEA.',
     'Minha jornada na psicanálise começou justamente pelo desejo de compreender melhor essas condições e oferecer um suporte mais sensível, acolhedor e eficaz — tanto para meus filhos quanto para outras famílias que passam por desafios semelhantes.',
-    'Hoje, sou especializada no acompanhamento de crianças e pré-adolescentes. Meu trabalho é ajudar os pequenos a reconhecerem, entenderem e expressarem suas emoções de forma segura, respeitando o tempo e a individualidade de cada um.',
+    'Hoje, sou especializada no acompanhamento de crianças e adolescentes. Meu trabalho é ajudar os pequenos a reconhecerem, entenderem e expressarem suas emoções de forma segura, respeitando o tempo e a individualidade de cada um.',
     'Se você percebe que seu filho ou filha está enfrentando dificuldades emocionais, sociais ou comportamentais, posso te ajudar nesse processo com um atendimento humanizado e cuidadoso.',
   ],
   highlight: 'Estou aqui para acolher, orientar e caminhar junto com sua família.',
@@ -83,7 +83,7 @@ export const paraQuem: ParaQuemContent = {
   eyebrow: 'Para quem é este atendimento?',
   h2: 'Encontre o seu caminho',
   description:
-    'Para mulheres que enfrentam ansiedade, depressão, trauma ou dificuldades nos relacionamentos — e para crianças e adolescentes com desafios emocionais, comportamentais ou de aprendizado (TDAH, TEA, ansiedade, dificuldades na escola). Um espaço seguro e acolhedor, no tempo de cada um.',
+    'Para crianças e adolescentes com desafios emocionais, comportamentais ou de aprendizado (TDAH, TEA, ansiedade, dificuldades na escola). Um espaço seguro e acolhedor, no tempo de cada um.',
   ctaLabel: 'Fale comigo pelo WhatsApp',
 }
 

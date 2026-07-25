@@ -16,7 +16,7 @@ export default function Sobre() {
             <div className="relative">
               <div className="absolute -inset-3 -rotate-2 rounded-2xl bg-secondary" />
               <img
-                alt="Karoline Jangola — psicanalista e terapeuta online especializada em crianças e mulheres"
+                alt="Karoline Jangola — psicanalista e terapeuta online especializada em crianças e adolescentes"
                 className="relative aspect-[4/5] w-full rounded-2xl object-cover shadow-soft"
                 loading="lazy"
                 src={site.portraitImage}

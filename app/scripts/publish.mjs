@@ -54,13 +54,15 @@ function isDenylisted(name) {
   return false
 }
 
-// Used to guard step 4 (copy from dist/). CNAME and robots.txt are
-// deliberately excluded here: dist/ carries identical copies of both, and
-// the brief is explicit that the copy overwriting them with the same
-// content is fine — only the special-delete in step 2 is forbidden for
-// them. Everything else in the hard denylist still applies.
+// Used to guard step 4 (copy from dist/). CNAME, robots.txt, and .nojekyll
+// are deliberately excluded here: dist/ carries identical copies of all
+// three (source: app/public/), and the brief is explicit that the copy
+// overwriting them with the same content is fine — only the special-delete
+// in step 2 is forbidden for them. Everything else in the hard denylist
+// still applies.
 function isCopyDenylisted(name) {
   if (DENYLIST.has(name)) return true
+  if (name === '.nojekyll') return false
   if (name.startsWith('.')) return true // any dotfile at root
   return false
 }
