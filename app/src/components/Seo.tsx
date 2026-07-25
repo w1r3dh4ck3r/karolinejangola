@@ -24,9 +24,13 @@ const SEO_DATA_ATTR = 'data-seo-managed'
  * document.head so a headless-browser prerender snapshot (Task 9) captures
  * them — nothing here renders inside #root.
  *
- * Every tag it writes is tagged with data-seo-managed so re-renders update
- * existing nodes in place instead of duplicating them, and unrelated head
- * tags (fonts, viewport, etc.) are left untouched.
+ * Meta/link tags are deduped by SEMANTIC identity (name/property/rel), so
+ * the static description/canonical/og/twitter tags already shipped in
+ * app/index.html get updated in place on first mount instead of getting a
+ * duplicate — then stamped data-seo-managed so later renders keep finding
+ * the same node. JSON-LD scripts (index.html ships none) are tracked by
+ * that marker alone. Unrelated head tags (fonts, viewport, etc.) are left
+ * untouched.
  */
 export default function Seo({ title, description, canonical, og, jsonLd }: SeoProps) {
   useEffect(() => {
@@ -69,26 +73,32 @@ export default function Seo({ title, description, canonical, og, jsonLd }: SeoPr
 }
 
 function upsertMeta(attr: 'name' | 'property', key: string, content: string) {
-  const selector = `meta[${attr}="${key}"][${SEO_DATA_ATTR}]`
+  // Dedupe by SEMANTIC identity (name/property value), not by the
+  // data-seo-managed marker: app/index.html ships static description,
+  // og:*, and twitter:* meta tags with no marker, and matching only
+  // marked tags created a second, duplicate tag on first mount.
+  const selector = `meta[${attr}="${key}"]`
   let el = document.head.querySelector<HTMLMetaElement>(selector)
   if (!el) {
     el = document.createElement('meta')
     el.setAttribute(attr, key)
-    el.setAttribute(SEO_DATA_ATTR, 'true')
     document.head.appendChild(el)
   }
+  el.setAttribute(SEO_DATA_ATTR, 'true')
   el.setAttribute('content', content)
 }
 
 function upsertLink(rel: string, href: string) {
-  const selector = `link[rel="${rel}"][${SEO_DATA_ATTR}]`
+  // Same dedupe-by-identity fix as upsertMeta: index.html ships a static
+  // <link rel="canonical"> with no marker.
+  const selector = `link[rel="${rel}"]`
   let el = document.head.querySelector<HTMLLinkElement>(selector)
   if (!el) {
     el = document.createElement('link')
     el.setAttribute('rel', rel)
-    el.setAttribute(SEO_DATA_ATTR, 'true')
     document.head.appendChild(el)
   }
+  el.setAttribute(SEO_DATA_ATTR, 'true')
   el.setAttribute('href', href)
 }
 
