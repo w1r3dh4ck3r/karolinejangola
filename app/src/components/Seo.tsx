@@ -18,6 +18,13 @@ export interface SeoProps {
 
 const SEO_DATA_ATTR = 'data-seo-managed'
 
+// Site-wide OG constants (not per-page props) — same value on every route,
+// matching the static tags shipped in app/index.html. Owned here explicitly
+// so head management is complete and doesn't silently rely on inheriting
+// the static shell tags if that shell ever changes.
+const OG_LOCALE = 'pt_BR'
+const OG_SITE_NAME = 'Karoline Jangola - Psicanalista'
+
 /**
  * Dependency-free, helmet-style head manager. Upserts <title>, meta tags,
  * the canonical <link>, and JSON-LD <script> tags directly into
@@ -46,6 +53,8 @@ export default function Seo({ title, description, canonical, og, jsonLd }: SeoPr
       'og:url': og?.url ?? canonical,
       'og:type': og?.type ?? 'website',
       'og:image': og?.image,
+      'og:locale': OG_LOCALE,
+      'og:site_name': OG_SITE_NAME,
       'twitter:card': og?.image ? 'summary_large_image' : 'summary',
       'twitter:title': og?.title ?? title,
       'twitter:description': og?.description ?? description,
