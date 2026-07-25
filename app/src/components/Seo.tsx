@@ -53,10 +53,14 @@ export default function Seo({ title, description, canonical, og, jsonLd }: SeoPr
     }
 
     const writtenPropertyKeys: string[] = []
-    for (const [property, content] of Object.entries(ogTags)) {
+    for (const [key, content] of Object.entries(ogTags)) {
       if (!content) continue
-      upsertMeta('property', property, content)
-      writtenPropertyKeys.push(property)
+      // Only og:* is a `property` meta tag; twitter:* (and everything else
+      // in this map) uses `name` — matching the static tags already
+      // shipped in app/index.html so they update in place instead of
+      // duplicating.
+      upsertMeta(key.startsWith('og:') ? 'property' : 'name', key, content)
+      writtenPropertyKeys.push(key)
     }
 
     const jsonLdScripts = upsertJsonLd(jsonLd ?? [])
