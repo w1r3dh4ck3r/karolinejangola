@@ -46,4 +46,17 @@ Practice repositioning: dropped "women" from every audience descriptor, site now
 
 **Verification:** `npm run build` exit 0, `npm run publish:site` exit 0 (18 files copied), `npx vitest run` 4/4 pass. Served root: 0 hits for "mulheres e crianças", "mulheres adultas", "pré-adolescentes"; "crianças e adolescentes" present (5x); no regression — "para brasileiros que vivem no exterior" still present, ProfessionalService + FAQPage JSON-LD both present, Formspree/n8n/conversion-label/AW-id intact in `assets/*.js`, old phone `5527995119177` absent.
 
-**Next steps:** same as above — nothing pushed, awaiting Mark's push approval + canonical-host decision. Full task report: `.superpowers/reposition-report.md`.
+**Next steps:** (superseded — see the DEPLOYED entry below). Full task report: `.superpowers/reposition-report.md`.
+
+## 2026-07-25 — DEPLOYED + live (supersedes the "nothing pushed" notes above)
+
+Everything this session is now **pushed to `origin/main` and LIVE** on karolinejangola.com (GitHub Pages): the source reconstruction, the 3 content changes, the `.nojekyll` fix, the `publish.mjs` dotfile-denylist fix, and the children-&-adolescents repositioning (no women). Live-verified after each deploy (bundle hash flip + content greps).
+
+**Deploy pipeline is healthy now** — push `main` → Pages auto-builds → live in ~1–2 min. (Earlier this session the first deploy stalled twice: the Jekyll/`.nojekyll` failure left Pages in an `errored` state that stopped auto-building; recovered by `.nojekyll` + `gh api --method POST repos/w1r3dh4ck3r/karolinejangola/pages/builds`. If a future push doesn't go live, check `gh api .../pages` status and POST a build.)
+
+**Open (Mark's, none blocking):**
+- Treatments copy — Mark rewrites himself (the 5 cards still have adult framing incl. "Relacionamentos"; only the one `pré-adolescentes` word was swapped).
+- Swap the two adult-women testimonials (Ana Carolina, Lívia) — kept for now.
+- Female-grammar decision: some copy still addresses a female reader (hero H1 "Você não precisa carregar tudo **sozinha**"); now that the reader is a parent, decide keep-as-mothers vs neutral. `CLAUDE.md` female-grammar rule left untouched pending this.
+- **www TLS:** Mark DID the Pages custom-domain re-save + enabled Enforce HTTPS (2026-07-25 ~18:20). As of then, Pages cert state = `dns_changed` (GitHub re-provisioning); cert still lists apex only, `www` still serves the `*.github.io` fallback (https 000). GitHub cert provisioning is async (minutes–24h) — **re-check `www` later**: `echo | openssl s_client -servername www.karolinejangola.com -connect www.karolinejangola.com:443 | openssl x509 -noout -subject` should show `CN = www.karolinejangola.com` (or apex SAN incl. www). If it's still fallback after ~24h, remove/re-add the custom domain again. Apex (`https://karolinejangola.com`) is valid + safe throughout. DNS is correct (apex→Pages IPs, www→w1r3dh4ck3r.github.io). Optional later: flip to www-primary (`CNAME` + `publish.mjs` guard → `www.karolinejangola.com`) once www's cert is live.
+- `docs/reference/current-site-inventory.md` is a point-in-time capture of the ORIGINAL site — its "mulheres e crianças" positioning is pre-repositioning history, noted at its top.

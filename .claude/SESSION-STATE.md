@@ -1,26 +1,25 @@
 # SESSION-STATE
 
 ## Current Task
-DONE: (1) source reconstruction, (2) the 3 content changes, (3) audience reposition sweep (women+children → children & adolescents only, no women). All on local `main`, **NOT pushed**.
+DONE + LIVE: source reconstruction (React 18 + Vite + TS + Tailwind under `app/`), the 3 content changes, and the children-&-adolescents repositioning (no women). All pushed to `origin/main` and deployed on karolinejangola.com.
 
 ## Key facts
-- Source: `app/src/`. Build `cd app && npm run build` → `app/dist/`; `npm run publish:site` → repo root (served by GitHub Pages). Needs `npx playwright install chromium` for the prerender.
-- Ground truth = the live bundle, captured in `docs/reference/current-site-inventory.md`.
-- Live fonts/colors: DM Serif Display + DM Sans, sage `#4f7260` / terracotta `#c97a5e` / cream `#f8f5f1`.
-- Deploy = `git push` of `main` (GitHub Pages serves root). Pushing = LIVE. Site runs Google Ads.
-- `app/scripts/publish.mjs` copy-denylist blocked ALL dotfiles at repo root, which meant it threw on `.nojekyll` (added after the last successful publish) and left the root in a half-deleted state. Fixed by explicitly allowing `.nojekyll` through, same as the existing CNAME/robots.txt carve-out.
+- Source `app/src/`; content in `app/src/data/`. Build `cd app && npm run build` → `app/dist/`; `npm run publish:site` → repo root (GitHub Pages serves root). Needs `npx playwright install chromium`.
+- **Keep `.nojekyll` at root forever** — GitHub Pages runs Jekyll otherwise and fails on `{{ }}` in docs. `publish.mjs` has a `.nojekyll` copy carve-out (its dotfile denylist otherwise half-deletes root).
+- Deploy = `git push` of `main` = LIVE. Site runs Google Ads. If a push doesn't go live, check `gh api repos/w1r3dh4ck3r/karolinejangola/pages` status; POST `.../pages/builds` to force.
+- Positioning is now **children & adolescents only** (no women). Fonts DM Serif Display/DM Sans; sage/terracotta.
 
 ## Last Action
-Audience reposition copy sweep: hero body, Sobre paragraph, Para-quem description (women clause removed), FAQ answer, one Treatments card word, 3x seo.ts descriptions, index.html meta/og/twitter descriptions, Sobre.tsx alt text, CLAUDE.md copy rule. Build + publish verified clean on served root (no "mulheres"/"pré-adolescentes" left, no regression to prior JSON-LD/Formspree/n8n/phone/exterior-reach content). Full report at `.superpowers/reposition-report.md`.
+Repositioned copy (mulheres e crianças → crianças e adolescentes site-wide), pushed, live-verified. Wrap-up committed + pushed.
 
-## Next Step
-Awaiting Mark's decisions (nothing pushed):
-1. **Push approval** to deploy `main` (use `approved-push main`).
-2. **Canonical host** for the www TLS fix: www-primary (recommended — set `CNAME` to `www.karolinejangola.com`) vs apex-primary (change canonical in `seo.ts`). Immediate cert fix = re-save GitHub Pages custom domain (DNS already correct).
+## Next Step (all Mark's; none blocking)
+- Mark rewrites the 5 treatments cards; swap the 2 adult-women testimonials (Ana Carolina, Lívia).
+- Female-grammar call: hero H1 "…sozinha" still female-addressed; decide mothers vs neutral parent. `CLAUDE.md` female-grammar rule left pending.
+- www TLS: Mark DID the Pages re-save + Enforce HTTPS (~18:20); cert state `dns_changed`, provisioning (async, up to 24h). Re-check www cert later; if still `*.github.io` fallback after ~24h, remove/re-add custom domain again. Apex is valid/safe throughout. Optional later: flip to www-primary (CNAME + publish guard).
 
-## Files to touch next (if apex-primary chosen, or future changes)
-- `CNAME` (if www-primary) OR `app/src/data/seo.ts` canonical/og:url (if apex-primary)
-- Content lives in `app/src/data/` (content.ts, treatments/testimonials/faq, blog/, site.ts, seo.ts)
-- After edits: `cd app && npm run build && npm run publish:site`
+## Files to touch next
+- Treatments: `app/src/data/treatments.ts` (+ `Tratamentos.tsx` if layout). Testimonials: `app/src/data/testimonials.ts`.
+- www flip: `CNAME`, `app/public/CNAME`, `app/scripts/publish.mjs` guard, `app/src/data/seo.ts` canonical if needed.
+- After edits: `cd app && npm run build && npm run publish:site`, then `approved-push main`.
 
-<!-- session-state-sync: last written by session 1f22c527 at 2026-07-25 17:23:14 -0300 -->
+<!-- session-state-sync: last written by session 1f22c527 at 2026-07-25 17:40:36 -0300 -->

@@ -1,5 +1,7 @@
 # Karoline Jangola — Live Site Inventory
 
+> **HISTORICAL SNAPSHOT (2026-07-25):** This captures the ORIGINAL site at reconstruction time. The site has since changed — notably the practice **repositioned to children & adolescents only (no women)**, so this doc's "mulheres e crianças" positioning, the ISO 9001 mentions, and the audience-split cards are PRE-CHANGE history. Trust the current `app/src/` source for live content, not this snapshot.
+
 **CRITICAL METHODOLOGY NOTE — READ FIRST**
 
 `404.html` and `blog/*/index.html` are **STALE prerendered snapshots**, last regenerated at commit
