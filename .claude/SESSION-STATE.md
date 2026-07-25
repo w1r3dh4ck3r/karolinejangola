@@ -22,4 +22,4 @@ Removed the health-plan reimbursement claim from `faq.ts` ("plano de saúde" ans
 - www flip: `CNAME`, `app/public/CNAME`, `app/scripts/publish.mjs` guard, `app/src/data/seo.ts` canonical if needed.
 - After edits: `cd app && npm run build && npm run publish:site`, then `approved-push main`.
 
-<!-- session-state-sync: last written by session 1f22c527 at 2026-07-25 18:43:46 -0300 -->
+<!-- session-state-sync: last written by session 1f22c527 at 2026-07-25 18:44:52 -0300 -->
