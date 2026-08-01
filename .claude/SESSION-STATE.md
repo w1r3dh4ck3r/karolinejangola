@@ -10,16 +10,16 @@ DONE + LIVE: source reconstruction (React 18 + Vite + TS + Tailwind under `app/`
 - Positioning is now **children & adolescents only** (no women). Fonts DM Serif Display/DM Sans; sage/terracotta.
 
 ## Last Action
-Removed the health-plan reimbursement claim from `faq.ts` ("plano de saúde" answer now just "Atualmente atendo apenas de forma particular."), built + published + pushed + live-verified.
+www TLS (2026-08-01): unstick attempt + research. Removed+re-added Pages custom domain via API + forced build → cleared a `status: errored` build state (old Jekyll leftover) that likely blocked provisioning. Ruled out client-side causes: DNS clean (apex→4 Pages IPs, no AAAA/stray CNAME; www→github.io CNAME), CAA authorizes letsencrypt.org. Cert STILL `dns_changed`/apex-only. **Research (primary GitHub sources) found this matches an ACTIVE 2026 GitHub Pages backend bug (July 19–20 incident; community discussions #202318, #200447): provisioning job stalls before starting the LE request; state is DOMAIN-scoped, so www-primary flip is NOT confirmed to help and risks mirroring the bug onto the apex.** Staff say STOP removing/re-adding (resets timer) and open GitHub Support. DECISION (Mark): hold the www flip. Built the flip locally then REVERTED it (working tree clean, apex config intact). **DONE: Mark FILED the GitHub Support ticket 2026-08-01 ~17:00** (repo w1r3dh4ck3r/karolinejangola, category "Repository features/Branches" — portal has no Pages category; GitHub's own AI triage confirmed DNS is correct + no self-service fix exists). Now WAITING on GitHub Support reply.
 
 ## Next Step (all Mark's; none blocking)
 - Mark rewrites the 5 treatments cards; swap the 2 adult-women testimonials (Ana Carolina, Lívia).
 - Female-grammar call: hero H1 "…sozinha" still female-addressed; decide mothers vs neutral parent. `CLAUDE.md` female-grammar rule left pending.
-- www TLS: Mark DID the Pages re-save + Enforce HTTPS (~18:20); cert state `dns_changed`, provisioning (async, up to 24h). Re-check www cert later; if still `*.github.io` fallback after ~24h, remove/re-add custom domain again. Apex is valid/safe throughout. Optional later: flip to www-primary (CNAME + publish guard).
+- www TLS (2026-08-01): **WAITING on GitHub Support** (ticket filed ~17:00). It's a GitHub backend provisioning bug (see Last Action), NOT client-side — DNS + CAA verified clean. **Do NOT flip to www-primary and do NOT remove/re-add again** — research shows the stuck state is domain-scoped (won't help) and staff say cycling resets the timer + risks breaking the apex. Apex stays valid/safe throughout; www keeps showing the browser warning until GitHub fixes it. `https_enforced` False (can't enable until cert covers www). When GitHub replies (or periodically): re-check with `echo \| openssl s_client -servername www.karolinejangola.com -connect www.karolinejangola.com:443 \| openssl x509 -noout -subject` (want `CN = www.karolinejangola.com` or apex SAN incl. www) and `gh api repos/w1r3dh4ck3r/karolinejangola/pages` (want cert `domains` to include www). Small chance it self-heals <24h from the errored-state clear.
 
 ## Files to touch next
 - Treatments: `app/src/data/treatments.ts` (+ `Tratamentos.tsx` if layout). Testimonials: `app/src/data/testimonials.ts`.
 - www flip: `CNAME`, `app/public/CNAME`, `app/scripts/publish.mjs` guard, `app/src/data/seo.ts` canonical if needed.
 - After edits: `cd app && npm run build && npm run publish:site`, then `approved-push main`.
 
-<!-- session-state-sync: last written by session 1f22c527 at 2026-07-25 18:44:52 -0300 -->
+<!-- session-state-sync: last written by session 4863060e at 2026-08-01 17:00:15 -0300 -->
