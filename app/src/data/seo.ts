@@ -3,7 +3,7 @@ import type { BlogPost } from './blog'
 import type { FaqItem } from './faq'
 import { site } from './site'
 
-export const SITE_URL = 'https://www.karolinejangola.com'
+export const SITE_URL = 'https://karolinejangola.com'
 const OG_IMAGE = `${SITE_URL}/og-image.jpg`
 
 /**
