@@ -8,8 +8,4 @@ describe('pagesContent', () => {
       expect(pagesContent[p.slug], p.slug).toBeTruthy()
     }
   })
-
-  it('smoke page carries the SP0 sentinel', () => {
-    expect(pagesContent['_smoke']).toContain('SP0-SMOKE-SENTINEL')
-  })
 })

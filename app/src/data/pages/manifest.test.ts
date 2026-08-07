@@ -22,8 +22,4 @@ describe('pages manifest', () => {
     expect(new Set(pages.map((p) => p.slug)).size).toBe(pages.length)
     expect(new Set(pages.map((p) => p.path)).size).toBe(pages.length)
   })
-
-  it('seeds the SP0 smoke page', () => {
-    expect(pages.some((p) => p.slug === '_smoke')).toBe(true)
-  })
 })
