@@ -1,6 +1,7 @@
 import type { SeoProps } from '../components/Seo'
 import type { BlogPost } from './blog'
 import type { FaqItem } from './faq'
+import type { PageMeta } from './pages/types'
 import { site } from './site'
 
 export const SITE_URL = 'https://karolinejangola.com'
@@ -118,5 +119,16 @@ export function blogPostSeo(post: BlogPost): SeoProps {
       type: 'article',
       image: OG_IMAGE,
     },
+  }
+}
+
+/** Static manifest page (`/tratamentos/*`, `/como-funciona`, …) — canonical
+ *  derives from SITE_URL (apex) so every page inherits the working host. */
+export function staticPageSeo(page: PageMeta): SeoProps {
+  return {
+    title: `${page.title} | Karoline Jangola`,
+    description: page.description,
+    canonical: `${SITE_URL}${page.path}`,
+    og: { image: OG_IMAGE },
   }
 }
