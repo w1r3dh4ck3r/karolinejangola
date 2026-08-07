@@ -5,6 +5,8 @@ import Home from './pages/Home'
 import Blog from './pages/Blog'
 import BlogPost from './pages/BlogPost'
 import NotFound from './pages/NotFound'
+import StaticPage from './components/StaticPage'
+import { pages } from './data/pages'
 
 /**
  * Matches the live bundle's visitor-tracking component (_v in
@@ -41,6 +43,9 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
+          {pages.map((p) => (
+            <Route key={p.slug} path={p.path} element={<StaticPage slug={p.slug} />} />
+          ))}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
