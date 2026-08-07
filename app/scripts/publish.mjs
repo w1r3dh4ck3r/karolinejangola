@@ -14,6 +14,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { computeGeneratedPaths } from './lib/generated-paths.mjs'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 // app/scripts/ -> app/ -> repo root
@@ -74,9 +75,15 @@ function main() {
     process.exit(1)
   }
 
+  const manifestPath = path.join(appDir, 'src', 'data', 'pages', 'manifest.json')
+  const manifestPages = fs.existsSync(manifestPath)
+    ? JSON.parse(fs.readFileSync(manifestPath, 'utf8'))
+    : []
+  const generatedPaths = computeGeneratedPaths(GENERATED_PATHS, manifestPages, isDenylisted)
+
   // Step 2: remove the root generated set (allowlist only).
   const removed = []
-  for (const name of GENERATED_PATHS) {
+  for (const name of generatedPaths) {
     if (isDenylisted(name)) {
       throw new Error(`refusing to remove denylisted path: ${name}`)
     }
