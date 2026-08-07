@@ -19,6 +19,7 @@ import http from 'node:http'
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { buildSitemapEntries } from './lib/sitemap.mjs'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const distDir = path.join(__dirname, '..', 'dist')
@@ -69,20 +70,11 @@ const staticRoutes = [
   { path: '/blog', outputs: ['blog/index.html'] },
 ]
 
-// Same priority/changefreq as the current live sitemap
-// (docs/reference/current-site-inventory.md §7); lastmod refreshed to
-// today's build date. Per-post entries are appended by buildSitemapEntries()
-// once the post slugs are derived.
-function buildSitemapEntries(postSlugs) {
-  return [
-    { loc: `${SITE_URL}/`, changefreq: 'monthly', priority: '1.0' },
-    { loc: `${SITE_URL}/blog`, changefreq: 'weekly', priority: '0.8' },
-    ...postSlugs.map((slug) => ({
-      loc: `${SITE_URL}/blog/${slug}`,
-      changefreq: 'monthly',
-      priority: '0.7',
-    })),
-  ]
+// Manifest pages are read straight off disk (this is a Node script; it can't
+// import the Vite-built TS). Same file the app imports — single source of truth.
+function readManifestPages() {
+  const manifestPath = path.join(__dirname, '..', 'src', 'data', 'pages', 'manifest.json')
+  return JSON.parse(fs.readFileSync(manifestPath, 'utf8'))
 }
 
 function startStaticServer(root, port) {
@@ -208,6 +200,7 @@ async function main() {
 
   const browser = await chromium.launch()
   let postSlugs = []
+  let manifestPages = []
   try {
     for (const route of staticRoutes) {
       const page = await renderPage(browser, route.path, route.extraWaits)
@@ -235,12 +228,21 @@ async function main() {
       writeSnapshot([`blog/${slug}/index.html`], html)
       await page.close()
     }
+
+    manifestPages = readManifestPages()
+    for (const pg of manifestPages) {
+      const page = await renderPage(browser, pg.path)
+      const html = '<!doctype html>\n' + (await page.content())
+      writeSnapshot([`${pg.outputDir}/index.html`], html)
+      await page.close()
+    }
+    console.log(`Prerendered ${manifestPages.length} manifest page(s).`)
   } finally {
     await browser.close()
     await new Promise((resolve) => server.close(resolve))
   }
 
-  writeSitemap(buildSitemapEntries(postSlugs))
+  writeSitemap(buildSitemapEntries(postSlugs, manifestPages))
   console.log('Prerender complete.')
 }
 
