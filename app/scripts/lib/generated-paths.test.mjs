@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { computeGeneratedPaths } from './generated-paths.mjs'
+import { BASE_GENERATED_PATHS, computeGeneratedPaths } from './generated-paths.mjs'
 
 const base = ['assets', 'index.html', 'blog', 'sitemap.xml']
 // mirrors publish.mjs isDenylisted for the cases under test
@@ -28,8 +28,6 @@ describe('computeGeneratedPaths', () => {
     expect(computeGeneratedPaths(base, [], isDenylisted).sort()).toEqual([...base].sort())
   })
 })
-
-import { BASE_GENERATED_PATHS, computeGeneratedPaths } from './generated-paths.mjs'
 
 describe('BASE_GENERATED_PATHS', () => {
   it('always includes the fixed atendimento section root, even with no manifest pages', () => {
