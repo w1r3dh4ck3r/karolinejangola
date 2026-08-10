@@ -20,7 +20,7 @@ export const comoSaberSePrecisoDeTerapia: BlogPost = {
 <p>O sono é um espelho da nossa saúde emocional. Se você tem dificuldade para adormecer, acorda várias vezes durante a noite ou se levanta sentindo que não descansou, isso pode estar relacionado a ansiedade, estresse crônico ou questões emocionais não resolvidas. A terapia ajuda a entender e tratar as raízes desses distúrbios.</p>
 
 <h2>3. Conflitos frequentes nos relacionamentos</h2>
-<p>Discussões repetidas com o parceiro, distanciamento de amigos ou dificuldades no ambiente de trabalho podem indicar padrões relacionais que merecem ser explorados. Muitas vezes, repetimos nas relações adultas dinâmicas que aprendemos na infância — e a terapia é o espaço ideal para compreender e transformar esses padrões.</p>
+<p>Conflitos frequentes em casa, distanciamento de amigos ou dificuldades na escola podem indicar padrões relacionais que merecem ser explorados. Muitas vezes, repetimos em nossas relações dinâmicas que aprendemos ao longo da vida — e a terapia é o espaço ideal para compreender e transformar esses padrões.</p>
 
 <h2>4. Perda de interesse por coisas que antes davam prazer</h2>
 <p>Quando hobbies, atividades sociais ou até mesmo as pequenas alegrias do cotidiano deixam de fazer sentido, isso pode ser sinal de depressão ou esgotamento emocional. Não é preguiça, fraqueza ou ingratidão — é o corpo e a mente pedindo socorro.</p>
@@ -32,7 +32,7 @@ export const comoSaberSePrecisoDeTerapia: BlogPost = {
 <p>Afastar-se de pessoas queridas, evitar situações sociais ou sentir que ninguém pode te entender são sinais de alerta. O isolamento tende a alimentar um ciclo de sofrimento: quanto mais nos fechamos, mais difícil fica sair desse estado.</p>
 
 <h2>7. Sensação de estar "travado" na vida</h2>
-<p>Você sente que está girando em círculos, tomando as mesmas decisões, caindo nos mesmos padrões? Essa sensação de estar preso — em um relacionamento, em um trabalho, em um modo de ser — é um dos motivos mais comuns que levam as pessoas à terapia. E um dos mais transformáveis.</p>
+<p>Você sente que está girando em círculos, tomando as mesmas decisões, caindo nos mesmos padrões? Essa sensação de estar preso — em uma rotina, em um modo de ser — é um dos motivos mais comuns que levam as pessoas à terapia. E um dos mais transformáveis.</p>
 
 <h2>Você não precisa estar "no fundo do poço"</h2>
 <p>Terapia não é apenas para crises. É um espaço de autoconhecimento, crescimento e cuidado com a sua saúde mental — algo tão importante quanto cuidar da saúde física. Você merece suporte independentemente do tamanho do que está sentindo.</p>
