@@ -22,5 +22,13 @@
     "sectionRoot": "atendimento",
     "title": "Terapia para Ansiedade Infantil",
     "description": "Seu filho ou filha tem crises de choro, medos ou preocupação constante? A terapia acolhe e fortalece as emoções da criança e do adolescente com ansiedade."
+  },
+  {
+    "slug": "terapia-para-tdah",
+    "path": "/atendimento/terapia-para-tdah",
+    "outputDir": "atendimento/terapia-para-tdah",
+    "sectionRoot": "atendimento",
+    "title": "TDAH: Terapia e Acompanhamento",
+    "description": "Acompanhamento terapêutico para crianças e adolescentes com TDAH, focado no fortalecimento emocional e no dia a dia. Não realizo laudos nem diagnósticos."
   }
 ]
