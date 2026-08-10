@@ -8,7 +8,7 @@ import { professionalServiceJsonLd, homeSeo } from './seo'
 // SP1 invariant: the practice targets children & adolescents only. These core
 // content surfaces must never reintroduce adult-women framing or conditions
 // Karoline does not treat. See docs/reference/practice-facts.md.
-const FORBIDDEN = [/depress/i, /trauma/i, /mulher/i]
+const FORBIDDEN = [/depress/i, /trauma/i, /mulher/i, /psicólog/i]
 
 function coreSurfaceText(): string {
   return [
@@ -45,7 +45,7 @@ const INDEX_HTML = readFileSync(fileURLToPath(new URL('../../index.html', import
 
 describe('index.html static meta tags', () => {
   it('carry no off-positioning or CRP-protected-title terms', () => {
-    for (const term of [/depress/i, /trauma/i, /mulher/i, /psicólog/i]) {
+    for (const term of FORBIDDEN) {
       expect(INDEX_HTML).not.toMatch(term)
     }
   })
