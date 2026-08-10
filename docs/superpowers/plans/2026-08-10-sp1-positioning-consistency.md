@@ -254,6 +254,68 @@ git commit -m "build(sp1): publish positioning-consistency copy"
 
 ---
 
+### Task 4: Fix the static `app/index.html` meta tags (added during Task 3 review)
+
+Task 3's review found `app/index.html` serves a hardcoded, NON-`data-seo-managed` `<meta name="keywords">` on every page containing `psicóloga online Brasil` (a CRP-protected-title violation — SP2 hard rule, she is psicanalista/terapeuta), plus `depressão` and `terapia para mulheres`. The `<meta name="description">` (l.8) and `<meta property="og:description">` (l.17) placeholders also still say "depressão, trauma" — those two are overwritten at runtime by the SEO component (latent traps, not served), but are aligned here for consistency. The Task 1 guard test missed all of this because it imports the TS data modules, not the static HTML template — so this task also extends the guard to read `index.html`.
+
+**Files:**
+- Modify: `app/src/data/positioning.test.ts` (add an `index.html` guard)
+- Modify: `app/index.html` (l.8 description, l.10 keywords, l.17 og:description)
+
+- [ ] **Step 1: Extend the guard test (RED)** — add to `app/src/data/positioning.test.ts`:
+
+```ts
+import { readFileSync } from 'node:fs'
+import { fileURLToPath } from 'node:url'
+
+const INDEX_HTML = readFileSync(fileURLToPath(new URL('../../index.html', import.meta.url)), 'utf8')
+
+describe('index.html static meta tags', () => {
+  it('carry no off-positioning or CRP-protected-title terms', () => {
+    for (const term of [/depress/i, /trauma/i, /mulher/i, /psicólog/i]) {
+      expect(INDEX_HTML).not.toMatch(term)
+    }
+  })
+})
+```
+(Add the two imports at the top of the existing file; append the new `describe` block. Do not alter the existing tests.)
+
+- [ ] **Step 2: Run to verify it FAILS**
+
+Run: `cd app && npx vitest run src/data/positioning.test.ts`
+Expected: FAIL — index.html still contains `depressão`, `mulher`, `psicólog`.
+
+- [ ] **Step 3: Fix `app/index.html`**
+
+- Line 8 `<meta name="description" content="…">` → set content to:
+  `Psicanalista e terapeuta online especializada em crianças e adolescentes. Acompanhamento de ansiedade, TDAH, TEA, autoestima e dificuldades emocionais e comportamentais. Atendimento online para o Brasil e brasileiros no exterior.`
+- Line 10 `<meta name="keywords" content="…">` → set content to (removes psicóloga/depressão/mulheres):
+  `psicanalista infantil online, terapeuta infantil, terapia para crianças, terapia para adolescentes, TDAH, TEA, ansiedade infantil, autoestima, psicanálise online`
+- Line 17 `<meta property="og:description" content="…">` → set content to the SAME string as line 8 above.
+
+- [ ] **Step 4: Run the guard test (GREEN) + full suite + build**
+
+Run: `cd app && npx vitest run && npm run build`
+Expected: all PASS; build exit 0.
+
+- [ ] **Step 5: Republish + re-verify invariants**
+
+Run: `cd app && npm run publish:site`
+Then from repo root:
+```bash
+cd .. && ! grep -riE 'depress|trauma|mulheres|psicólog' index.html && grep -q 'AW-16583121961' assets/*.js && grep -q 'rel="canonical" href="https://karolinejangola.com"' index.html && echo OK-index
+```
+Expected: prints `OK-index`.
+
+- [ ] **Step 6: Commit**
+
+```bash
+git add app/index.html app/src/data/positioning.test.ts index.html assets sitemap.xml 404.html blog
+git commit -m "fix(sp1): scrub CRP/women/adult terms from index.html meta + guard test"
+```
+
+---
+
 ## Post-plan (kickoff gate — controller, with Mark's approval)
 
 1. **Gemini adversarial review gate** (blocking, kickoff hard rule) — package spec + plan + changed files, send via `gemini-review`, address findings, re-run until cleared.
