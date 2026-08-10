@@ -86,4 +86,20 @@ export const pagesContent: Record<string, string> = {
 <h3>Atende por plano de saúde?</h3>
 <p>Atualmente atendo apenas de forma particular.</p>
 `,
+  'comportamento-infantil': `
+<p>Birras que não passam, respostas ríspidas, um "não" para tudo — muitas mães chegam até aqui achando que já tentaram de tudo. A terapia para problemas de comportamento infantil não parte da ideia de que existe algo errado para corrigir: parte da pergunta sobre o que esse comportamento está tentando dizer.</p>
+<h2>O que o comportamento pode estar comunicando</h2>
+<p>Uma criança com birra frequente, que desafia limites ou reage com irritação a pedidos simples, não é "difícil" por natureza — está comunicando algo que ainda não sabe colocar em palavras: uma mudança que a incomoda, um limite que a assusta, uma necessidade que não foi ouvida. Quando a dúvida vira uma busca por desobediência infantil o que fazer, olhar para o que está por trás do comportamento costuma abrir mais caminhos do que tentar corrigi-lo diretamente.</p>
+<h2>Como o trabalho ajuda</h2>
+<p>Como psicanalista, atendo seu filho ou filha por chamada de vídeo, usando a fala, o desenho ou o brincar — conforme a idade — para que ele ou ela encontre outras formas de expressar o que hoje aparece como comportamento difícil. O trabalho não fica só na sessão: entender os gatilhos e os padrões por trás da birra frequente ajuda também no apoio em casa, ajustando pequenas coisas na rotina — muitas vezes é aí que o alívio aparece primeiro, tanto para a criança quanto para quem cuida dela.</p>
+<h2>O papel dos pais</h2>
+<p>Você é peça central nesse processo, muito mais do que em outros tipos de acompanhamento — é em casa que a maior parte do comportamento acontece. Conversamos sobre o que você observa, o que já tentou e o que tem funcionado, para pensarmos juntas em ajustes possíveis, sem que a rotina vire uma sequência de broncas. Quando fizer sentido, a <a href="/atendimento/orientacao-para-pais">orientação para os pais</a> pode caminhar ao lado do acompanhamento do seu filho ou filha, como um espaço só seu para organizar essas dúvidas.</p>
+<h2>Como começar</h2>
+<p>O primeiro passo é escrever contando o que tem acontecido em casa com o seu filho ou filha — as birras, as respostas mais duras, o que já foi tentado. A partir dessa conversa, decidimos juntas o formato do acompanhamento, que pode seguir ao lado da <a href="/atendimento/terapia-infantil">terapia infantil</a> ou da <a href="/atendimento/terapia-para-adolescentes">terapia para adolescentes</a>, conforme a fase em que ele ou ela está.</p>
+<h2>Perguntas frequentes</h2>
+<h3>Você faz diagnóstico ou emite laudo?</h3>
+<p>Não realizo testes de rastreio, diagnósticos ou laudos. Meu trabalho é o fortalecimento emocional e o acompanhamento contínuo. Se você busca um laudo, o profissional indicado é um(a) neuropediatra ou psiquiatra.</p>
+<h3>Atende por plano de saúde?</h3>
+<p>Atualmente atendo apenas de forma particular.</p>
+`,
 }

@@ -54,5 +54,13 @@
     "sectionRoot": "atendimento",
     "title": "Terapia para Autoestima Infantil",
     "description": "Terapia para fortalecer a autoestima de crianças e adolescentes. Quando a criança ou o adolescente sente que vale menos que os outros, a terapia acolhe e ajuda a reconstruir a autoconfiança, no tempo de cada um."
+  },
+  {
+    "slug": "comportamento-infantil",
+    "path": "/atendimento/comportamento-infantil",
+    "outputDir": "atendimento/comportamento-infantil",
+    "sectionRoot": "atendimento",
+    "title": "Terapia para Comportamento Infantil",
+    "description": "Birras frequentes, desafios e conflitos em casa? A terapia ajuda a compreender o que o comportamento do seu filho ou filha comunica — sem rótulos."
   }
 ]
