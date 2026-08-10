@@ -14,5 +14,13 @@
     "sectionRoot": "atendimento",
     "title": "Terapia para Adolescentes Online",
     "description": "Terapia para adolescentes online. Um espaço de escuta sem julgamento para o seu filho ou filha atravessar essa fase com mais segurança emocional."
+  },
+  {
+    "slug": "ansiedade-infantil",
+    "path": "/atendimento/ansiedade-infantil",
+    "outputDir": "atendimento/ansiedade-infantil",
+    "sectionRoot": "atendimento",
+    "title": "Terapia para Ansiedade Infantil",
+    "description": "Seu filho ou filha tem crises de choro, medos ou preocupação constante? A terapia acolhe e fortalece as emoções da criança e do adolescente com ansiedade."
   }
 ]

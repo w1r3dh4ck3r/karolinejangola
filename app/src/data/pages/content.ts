@@ -23,4 +23,15 @@ export const pagesContent: Record<string, string> = {
 <h2>Como começar</h2>
 <p>Se você sente que é hora de buscar ajuda para adolescente, o primeiro passo é simples: uma conversa inicial, sem compromisso, para eu entender um pouco do momento do seu filho ou filha e você avaliar se faz sentido seguirmos juntas. Não é preciso ter certeza de nada — só abertura para conversar. A partir daí, combinamos a frequência das sessões e como cuidar, com leveza, dessa fase de transformação.</p>
 `,
+  'ansiedade-infantil': `
+<p>Ver seu filho ou filha em meio a uma crise de choro, um medo que não passa, ou uma preocupação constante que parece maior do que a idade deveria carregar, mexe com qualquer mãe. A terapia para ansiedade infantil abre um espaço para acolher essas emoções e ajudar a criança ou o adolescente a entender o que sente, no tempo de cada um.</p>
+<h2>Sinais de ansiedade na infância e adolescência</h2>
+<p>Entre os sintomas de ansiedade infantil mais comuns estão o medo excessivo diante de situações do dia a dia, dificuldade para dormir, dores de barriga ou de cabeça sem causa aparente, irritabilidade e a recusa em ir à escola ou a encontros com outras crianças. Já a ansiedade em adolescentes costuma aparecer de outra forma: isolamento, inquietação, dificuldade de concentração nos estudos ou uma cobrança excessiva consigo mesmos. Em ambos os casos, o que chama atenção não é um sinal isolado, mas a repetição — quando o desconforto se torna frequente e começa a atrapalhar a rotina.</p>
+<h2>Crises de choro: o que podem estar comunicando</h2>
+<p>Nem sempre há uma causa clara para quem está de fora. As crises de choro costumam ser a forma que a criança ou o adolescente encontra para expressar algo que ainda não sabe nomear — um medo, uma exigência que pesa, uma mudança difícil de processar. Em vez de tentar fazer o choro parar rápido, vale a pena perguntar o que ele está tentando dizer. É esse espaço de escuta que a terapia ajuda a construir.</p>
+<h2>Como a terapia ajuda</h2>
+<p>Como psicanalista, recebo o seu filho ou filha por videochamada, em sessões que respeitam o ritmo e a linguagem de cada idade — pela fala, pelo brincar ou pelo desenho, quando a criança é pequena. O trabalho não é sobre eliminar a ansiedade da noite para o dia, mas sobre fortalecer os recursos emocionais para que ela ou ele consiga lidar melhor com o que sente. Quando a ansiedade aparece ainda na infância, esse acompanhamento se aproxima da <a href="/atendimento/terapia-infantil">terapia infantil online</a>; quando surge na adolescência, caminha junto da <a href="/atendimento/terapia-para-adolescentes">terapia para adolescentes online</a>. Em qualquer uma das fases, a <a href="/atendimento/orientacao-para-pais">orientação para os pais</a> pode caminhar em paralelo, para que você também tenha apoio e direção em casa.</p>
+<h2>Como começar</h2>
+<p>O primeiro passo é conversarmos, sem compromisso, sobre o que você está observando no seu filho ou filha. A partir dessa conversa, você sente se faz sentido seguirmos juntas, e combinamos como estruturar o acompanhamento com calma.</p>
+`,
 }
