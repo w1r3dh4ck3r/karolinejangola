@@ -6,5 +6,13 @@
     "sectionRoot": "atendimento",
     "title": "Terapia Infantil Online",
     "description": "Terapia infantil online com psicanalista especializada em crianças. Um espaço seguro e acolhedor para fortalecer as emoções do seu filho ou filha, no conforto de casa."
+  },
+  {
+    "slug": "terapia-para-adolescentes",
+    "path": "/atendimento/terapia-para-adolescentes",
+    "outputDir": "atendimento/terapia-para-adolescentes",
+    "sectionRoot": "atendimento",
+    "title": "Terapia para Adolescentes Online",
+    "description": "Terapia para adolescentes online. Um espaço de escuta sem julgamento para o seu filho ou filha atravessar essa fase com mais segurança emocional."
   }
 ]
