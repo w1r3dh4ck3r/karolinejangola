@@ -103,3 +103,22 @@ Mark pasted an external 15-item SEO/conversion review of the site. Triaged it ag
 **Known limitation to carry into SP3 (parked finding):** `publish.mjs` cleans only sectionRoots CURRENTLY in the manifest, so a page **removed** from the manifest orphans its already-published dir. Fix in SP2/SP3 by putting service pages under a **fixed** sectionRoot (a permanent `GENERATED_PATHS` entry, wiped+recopied like `blog/`) so per-page removal self-cleans. Deferred minors, recorded here since the SDD scratch ledger was removed after merge: dead `SITE_URL` in `prerender.mjs`; two inaccurate code comments (`pages/index.ts` cast rationale; and one more); `generated-paths.mjs` gives an opaque `TypeError` on a malformed/non-array manifest (fails safe, non-deleting); and post-teardown the `manifest`/`content` tests iterate empty arrays so they pass vacuously until SP3 repopulates the manifest. None block anything; clean up opportunistically in SP3.
 
 **Preserved verbatim** (revenue/deploy-critical, re-verified after the republish): gtag `AW-16583121961` + conversion label, Formspree `f/xeevlzlb`, n8n webhook, `.nojekyll`, `CNAME`=apex, apex canonical.
+
+## 2026-08-09 — SP2 (SEO IA/keyword-map) speced + approved; SP3 build plan written
+
+Karoline answered the 4 intake questions that had blocked SP2 → recorded verbatim + structured in `docs/reference/practice-facts.md` (authoritative content source). Ran SP2 as a full brainstorm→spec cycle; Mark approved all sections. Then wrote the SP3 build plan. **Docs only — no app/site changes, SP3 not yet executed.**
+
+**Key decisions (the why):**
+- **psicanalista/terapeuta, NEVER "psicólogo/a".** Web research (CRP-03, ONP, Jusbrasil, FEBRAPSI — see `docs/reference/keyword-research-2026-08-09.md` §1) confirmed "psicólogo/a" is a CRP-protected title (Lei 4.119/1962; 5.766/1971); psicanálise/psicoterapia are unregulated. Targeting "psicólogo infantil" demand = false-advertising risk + implies diagnóstico/laudo/testes she doesn't do. So titles/H1/JSON-LD stay on psicanalista/terapeuta.
+- **Hard claim boundary drives the taxonomy.** She does NOT diagnose, screen, issue laudos, or take planos. High-volume TDAH/TEA searches split into acompanhamento-intent (hers) vs diagnóstico/laudo/teste-intent (NOT hers) → those are negative keywords, disclaimed via a shared boundary FAQ. TDAH/TEA/comportamento pages are *fortalecimento emocional*, never assessment.
+- **IA = Hybrid**, 9 pages (3 service + 6 condition) under a **single fixed section root `/atendimento/`** — chosen specifically to close the SP0 orphan finding (fixed root wiped+recopied like `blog/`). P0/P1/P2 demand tiers.
+- **No depressão/trauma pages** — not in her stated list (the live `treatments.ts`/`seo.ts` still list them + adult/women framing → SP1's job).
+- National online positioning, **no geo pages** (SP6 owns local/GMB; real city still unconfirmed).
+
+**Two SP3 gotchas found by reading the code (in spec §4–§5 + plan Tasks 2–3):**
+- Static pages emit **zero JSON-LD** today (`staticPageSeo` returns none, though `Seo` already supports a `jsonLd` array) → plan adds BreadcrumbList(all) + FAQPage(TDAH/TEA/comportamento).
+- Page bodies are injected via `dangerouslySetInnerHTML`, so an in-body `<a onClick>` **won't fire the Ads conversion** → `StaticPage` must render a real `<WhatsAppLink>` CTA below the article (inline-onclick snippet documented for any in-body CTA).
+
+**⚠️ Sequencing:** program order was SP1→SP2→SP3; we ran SP2 ahead because it unblocked. **SP1 still pending** and SP3's Task 13 (home hub-card links) depends on SP1's rewritten cards; the live home also still has adult/women leftover copy. Recommended **SP1 before executing SP3**; Tasks 1–12+14 are SP1-independent.
+
+**Next steps:** Mark chose (end of session) to **wrap up + shut down**; SP3 execution deferred. On resume: pick SP1-first vs execute-SP3 (see SESSION-STATE). Karoline can tone-check the 9 page copy drafts (claims are locked, wording soft). Housekeeping: notes.md now spans >3 sessions — archive pre-2026-08-07 entries to `docs/notes-archive.md` next session.
