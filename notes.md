@@ -136,3 +136,34 @@ Mark chose SP1 before SP3. Full kickoff cycle (brainstorm→spec→plan→SDD ex
 **Deferred to SP5 (non-blocking):** blog BODY prose still says "depressão"/"psicólogo" in `terapia-online-funciona` + `como-saber` (the "psicólogo" there is a generic profession reference, not applied to Karoline) — full blog reframe is SP5's job; SP1 only touched the 2 worst lines by design. Also a nice-to-have: a guard tripwire asserting the TDAH/TEA disclaimer text survives.
 
 **Next:** SP3 (build the 9 `/atendimento/` pages) — Task 13 now unblocked by SP1's rewritten cards.
+
+## 2026-08-10 — Humanized the 5 treatment card bodies (DEPLOYED + LIVE)
+
+Mark asked to run the site copy through a "humanizer" and research the best. **Research verdict:
+don't use a SaaS humanizer** — they're English-first detector-EVASION tools, no verified pt-BR
+quality, none aware of Portuguese gender agreement (would break the female-grammar rule), and
+several retain/train on input. Used the local **`humanizer` skill** (Wikipedia signs-of-AI-writing)
+instead. Full detail + the do/don't in project memory [[site-copy-humanizing-approach]].
+
+**Scope decision (Mark):** humanize only the **5 SP1 treatment card bodies** now. Deferred blog-body
+humanizing into SP5's reframe (doing it now = overwritten later); excluded SEO meta descriptions
+(SERP snippets, negligible benefit); never touched her authentic reconstructed copy (hero/Sobre/
+Para quem/FAQ) or the real testimonials.
+
+**The actual fix wasn't em-dash removal.** Karoline's own copy uses em dashes (house style), so the
+real AI tell was the **repeated template** — all 5 cards read "symptom, symptom, symptom — abstract
+statement. What I do." De-templated: varied each opening (statement / "Sou mãe de…" / group
+observation / "Acompanho…" / conditional), kept warmth, held every constraint (mother-reader female,
+child neutral, TDAH/TEA disclaimers verbatim, factual "mãe de…" lines).
+
+**Bug the layered review caught (worth remembering):** the "Relacionamentos" card draft I approved
+read "…se sentem **sozinhas**" for "crianças e adolescentes". I justified it wrongly ("agrees with
+crianças") and an internal reviewer accepted it; the **Gemini gate caught it** — a mixed group takes
+the **masculine-neutral** (`sozinhos`), and feminine there misgenders boys + narrows positioning.
+Fixed pre-deploy. Lesson in memory [[pt-br-female-grammar-mixed-group]]: the female rule is about the
+MOTHER-reader, never the child group.
+
+**Shipped:** commits `15cf1a5` (humanize) + `4275c50` (sozinhos fix), merged to main, pushed,
+**live-verified** on karolinejangola.com (Pages `built`, bundle `index-bgtvaYuI.js`): new copy served,
+old templated copy gone, both disclaimers present, zero depressão/trauma/mulher/psicólog, gtag/Formspree/
+apex-canonical/.nojekyll intact. Reviews: internal reviewer ✅ + Gemini gate cleared (round 2).
