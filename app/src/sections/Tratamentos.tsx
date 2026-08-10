@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { tratamentosHeading } from '../data/content'
 import { treatments } from '../data/treatments'
 import { ICONS } from '../lib/icons'
@@ -15,11 +16,10 @@ export default function Tratamentos() {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {treatments.map((treatment) => {
             const Icon = ICONS[treatment.icon]
-            return (
-              <div
-                key={treatment.title}
-                className="group rounded-xl bg-background p-8 shadow-sm transition-shadow duration-300 hover:shadow-md"
-              >
+            const cardClassName =
+              'group rounded-xl bg-background p-8 shadow-sm transition-shadow duration-300 hover:shadow-md'
+            const cardContent = (
+              <>
                 <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-lg bg-sage/10 transition-colors group-hover:bg-sage/15">
                   <Icon className="h-5 w-5 text-sage" />
                 </div>
@@ -27,6 +27,15 @@ export default function Tratamentos() {
                 <p className="font-sans text-sm leading-relaxed text-muted-foreground">
                   {treatment.body}
                 </p>
+              </>
+            )
+            return treatment.href ? (
+              <Link key={treatment.title} to={treatment.href} className={`block ${cardClassName}`}>
+                {cardContent}
+              </Link>
+            ) : (
+              <div key={treatment.title} className={cardClassName}>
+                {cardContent}
               </div>
             )
           })}
