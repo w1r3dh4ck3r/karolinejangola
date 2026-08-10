@@ -39,6 +39,10 @@ describe('SP1 positioning invariants', () => {
       expect.arrayContaining(['TDAH', 'TEA', 'Autoestima']),
     )
   })
+
+  it('keeps homeSeo description and og:description identical (spec: Seo writes description verbatim to meta/og/twitter)', () => {
+    expect(homeSeo.og?.description).toBe(homeSeo.description)
+  })
 })
 
 const INDEX_HTML = readFileSync(fileURLToPath(new URL('../../index.html', import.meta.url)), 'utf8')
