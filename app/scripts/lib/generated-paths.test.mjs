@@ -28,3 +28,13 @@ describe('computeGeneratedPaths', () => {
     expect(computeGeneratedPaths(base, [], isDenylisted).sort()).toEqual([...base].sort())
   })
 })
+
+import { BASE_GENERATED_PATHS, computeGeneratedPaths } from './generated-paths.mjs'
+
+describe('BASE_GENERATED_PATHS', () => {
+  it('always includes the fixed atendimento section root, even with no manifest pages', () => {
+    expect(BASE_GENERATED_PATHS).toContain('atendimento')
+    const result = computeGeneratedPaths(BASE_GENERATED_PATHS, [], () => false)
+    expect(result).toContain('atendimento')
+  })
+})

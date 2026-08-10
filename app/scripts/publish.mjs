@@ -14,7 +14,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { computeGeneratedPaths } from './lib/generated-paths.mjs'
+import { BASE_GENERATED_PATHS, computeGeneratedPaths } from './lib/generated-paths.mjs'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 // app/scripts/ -> app/ -> repo root
@@ -25,7 +25,7 @@ const distDir = path.join(appDir, 'dist')
 // The exact set of root-level, generated paths this script is allowed to
 // remove before copying dist/ over the root. Anything not in this list is
 // never deleted, regardless of what dist/ does or doesn't contain.
-const GENERATED_PATHS = ['assets', 'index.html', '404.html', 'blog', 'sitemap.xml', 'placeholder.svg']
+const GENERATED_PATHS = BASE_GENERATED_PATHS
 
 // Paths that must never be deleted or overwritten, no matter what. Checked
 // against both GENERATED_PATHS (defence in depth) and every path visited
