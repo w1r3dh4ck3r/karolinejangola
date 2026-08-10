@@ -38,5 +38,13 @@
     "sectionRoot": "atendimento",
     "title": "Orientação para Pais",
     "description": "Orientação para você, mãe, entender e apoiar melhor o seu filho ou filha. Separadamente ou junto ao acompanhamento mensal."
+  },
+  {
+    "slug": "apoio-emocional-tea",
+    "path": "/atendimento/apoio-emocional-tea",
+    "outputDir": "atendimento/apoio-emocional-tea",
+    "sectionRoot": "atendimento",
+    "title": "TEA (Autismo): Apoio Emocional",
+    "description": "Apoio emocional para crianças e adolescentes autistas e suas famílias, no ritmo de cada um. Trabalho de fortalecimento — não realizo laudos ou avaliações."
   }
 ]

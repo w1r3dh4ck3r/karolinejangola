@@ -61,4 +61,20 @@ export const pagesContent: Record<string, string> = {
 <h2>Como começar</h2>
 <p>Para começar, escreva pelo WhatsApp contando um pouco do que você está vivendo com o seu filho ou filha. Marcamos uma conversa inicial, sem compromisso, e a partir dela decidimos o formato — avulso ou dentro do acompanhamento mensal — que melhor apoia esse momento.</p>
 `,
+  'apoio-emocional-tea': `
+<p>Descobrir que seu filho ou filha está no espectro autista traz perguntas que nem sempre têm resposta fácil — e, ao mesmo tempo, o dia a dia continua pedindo cuidado, presença e escuta. Como psicanalista para criança com autismo, ofereço um espaço para que ele ou ela se expresse do seu próprio jeito, e para que você, como família, encontre apoio nesse caminho.</p>
+<h2>Como é o apoio emocional no TEA</h2>
+<p>Cada criança autista tem uma forma própria de perceber e se relacionar com o mundo, e o apoio emocional respeita esse ritmo, sem tentar padronizar respostas ou comportamentos. Nas sessões, uso a fala, o brincar, o desenho ou outros recursos que façam sentido para o seu filho ou filha, buscando construir um vínculo de confiança em que ele ou ela se sinta seguro para expressar frustrações, ansiedades e alegrias. A terapia para criança autista, aqui, não é sobre "corrigir" traços do espectro — é sobre fortalecer os recursos emocionais para lidar com mudanças de rotina, sensibilidades sensoriais, dificuldades sociais ou momentos de sobrecarga.</p>
+<h2>O que este trabalho não inclui</h2>
+<p>É importante deixar claros os limites do meu trabalho: não realizo avaliação, testes de rastreio ou diagnóstico, nem emito laudos, e não atendo por plano de saúde — o acompanhamento é sempre particular. Se a sua família está buscando uma avaliação ou um laudo, o caminho indicado é procurar um(a) neuropediatra, psiquiatra ou uma equipe especializada em diagnóstico do espectro autista. O meu papel começa depois — ou ao lado — dessa avaliação: cuidar do que seu filho ou filha sente e vive no dia a dia, com apoio e fortalecimento emocional.</p>
+<h2>Apoio à família</h2>
+<p>Como ajudar filho autista nas pequenas decisões do cotidiano é uma dúvida que muitas famílias trazem, e ela também tem espaço aqui. Entender o que gera desconforto, o que ajuda a acalmar e como conversar sobre o autismo em casa faz parte do cuidado — por isso a <a href="/atendimento/orientacao-para-pais">orientação para os pais</a> pode caminhar ao lado do acompanhamento do seu filho ou filha, sempre que fizer sentido para a rotina de vocês.</p>
+<h2>Como começar</h2>
+<p>Escreva contando um pouco sobre o seu filho ou filha e o momento que a família está vivendo; a partir daí, marcamos uma conversa inicial para eu entender melhor as necessidades dele ou dela. O acompanhamento pode ser feito por chamada de vídeo, e a frequência das sessões é combinada de acordo com o que fizer sentido para vocês — seja logo na infância, com a <a href="/atendimento/terapia-infantil">terapia infantil</a>, seja na adolescência, com a <a href="/atendimento/terapia-para-adolescentes">terapia para adolescentes</a>.</p>
+<h2>Perguntas frequentes</h2>
+<h3>Você faz diagnóstico ou emite laudo?</h3>
+<p>Não realizo testes de rastreio, diagnósticos ou laudos. Meu trabalho é o fortalecimento emocional e o acompanhamento contínuo. Se você busca um laudo, o profissional indicado é um(a) neuropediatra ou psiquiatra.</p>
+<h3>Atende por plano de saúde?</h3>
+<p>Atualmente atendo apenas de forma particular.</p>
+`,
 }
