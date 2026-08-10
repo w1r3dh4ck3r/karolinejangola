@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "slug": "terapia-infantil",
+    "path": "/atendimento/terapia-infantil",
+    "outputDir": "atendimento/terapia-infantil",
+    "sectionRoot": "atendimento",
+    "title": "Terapia Infantil Online",
+    "description": "Terapia infantil online com psicanalista especializada em crianças. Um espaço seguro e acolhedor para fortalecer as emoções do seu filho ou filha, no conforto de casa."
+  }
+]
