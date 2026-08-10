@@ -22,6 +22,6 @@ export const faq: FaqItem[] = [
   },
   {
     q: 'Para quem é indicado o seu atendimento?',
-    a: 'Atendo crianças e adolescentes. Trabalho com questões como ansiedade, depressão, traumas, dificuldades nos relacionamentos e desafios emocionais da infância e adolescência.',
+    a: 'Atendo crianças e adolescentes de 8 a 19 anos. Trabalho com questões como ansiedade, TDAH, TEA, autoestima, dificuldades nos relacionamentos e desafios emocionais e comportamentais da infância e adolescência.',
   },
 ]
