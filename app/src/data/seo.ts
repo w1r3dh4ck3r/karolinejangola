@@ -122,13 +122,31 @@ export function blogPostSeo(post: BlogPost): SeoProps {
   }
 }
 
+/** Breadcrumb JSON-LD for a static page: Início → Atendimento → page. */
+export function breadcrumbJsonLd(page: PageMeta) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Início', item: SITE_URL },
+      { '@type': 'ListItem', position: 2, name: 'Atendimento', item: `${SITE_URL}/#tratamentos` },
+      { '@type': 'ListItem', position: 3, name: page.title, item: `${SITE_URL}${page.path}` },
+    ],
+  }
+}
+
 /** Static manifest page (`/tratamentos/*`, `/como-funciona`, …) — canonical
- *  derives from SITE_URL (apex) so every page inherits the working host. */
-export function staticPageSeo(page: PageMeta): SeoProps {
+ *  derives from SITE_URL (apex) so every page inherits the working host.
+ *  Optional `faqItems` add a FAQPage JSON-LD alongside the always-on
+ *  BreadcrumbList. */
+export function staticPageSeo(page: PageMeta, faqItems?: FaqItem[]): SeoProps {
+  const jsonLd: Record<string, unknown>[] = [breadcrumbJsonLd(page)]
+  if (faqItems && faqItems.length > 0) jsonLd.push(faqPageJsonLd(faqItems))
   return {
     title: `${page.title} | Karoline Jangola`,
     description: page.description,
     canonical: `${SITE_URL}${page.path}`,
     og: { image: OG_IMAGE },
+    jsonLd,
   }
 }

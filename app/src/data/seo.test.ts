@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { staticPageSeo } from './seo'
+import { BOUNDARY_FAQ } from './pages/faq'
 import type { PageMeta } from './pages/types'
 
 const page: PageMeta = {
@@ -24,5 +25,17 @@ describe('staticPageSeo', () => {
 
   it('never emits a www host', () => {
     expect(staticPageSeo(page).canonical).not.toContain('www.')
+  })
+})
+
+describe('staticPageSeo jsonLd', () => {
+  it('always emits a BreadcrumbList', () => {
+    const jsonLd = staticPageSeo(page).jsonLd ?? []
+    expect(jsonLd.some((x) => x['@type'] === 'BreadcrumbList')).toBe(true)
+  })
+  it('emits FAQPage only when faqItems are passed', () => {
+    expect((staticPageSeo(page).jsonLd ?? []).some((x) => x['@type'] === 'FAQPage')).toBe(false)
+    const withFaq = staticPageSeo(page, BOUNDARY_FAQ).jsonLd ?? []
+    expect(withFaq.some((x) => x['@type'] === 'FAQPage')).toBe(true)
   })
 })
