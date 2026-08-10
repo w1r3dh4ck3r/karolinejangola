@@ -1,4 +1,6 @@
 import { describe, it, expect } from 'vitest'
+import { readFileSync } from 'node:fs'
+import { fileURLToPath } from 'node:url'
 import { treatments } from './treatments'
 import { faq } from './faq'
 import { professionalServiceJsonLd, homeSeo } from './seo'
@@ -36,5 +38,15 @@ describe('SP1 positioning invariants', () => {
     expect(professionalServiceJsonLd.founder.knowsAbout).toEqual(
       expect.arrayContaining(['TDAH', 'TEA', 'Autoestima']),
     )
+  })
+})
+
+const INDEX_HTML = readFileSync(fileURLToPath(new URL('../../index.html', import.meta.url)), 'utf8')
+
+describe('index.html static meta tags', () => {
+  it('carry no off-positioning or CRP-protected-title terms', () => {
+    for (const term of [/depress/i, /trauma/i, /mulher/i, /psicólog/i]) {
+      expect(INDEX_HTML).not.toMatch(term)
+    }
   })
 })
