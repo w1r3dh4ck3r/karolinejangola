@@ -46,5 +46,13 @@
     "sectionRoot": "atendimento",
     "title": "TEA (Autismo): Apoio Emocional",
     "description": "Apoio emocional para crianças e adolescentes autistas e suas famílias, no ritmo de cada um. Trabalho de fortalecimento — não realizo laudos ou avaliações."
+  },
+  {
+    "slug": "autoestima",
+    "path": "/atendimento/autoestima",
+    "outputDir": "atendimento/autoestima",
+    "sectionRoot": "atendimento",
+    "title": "Terapia para Autoestima Infantil",
+    "description": "Terapia para fortalecer a autoestima de crianças e adolescentes. Quando a criança ou o adolescente sente que vale menos que os outros, a terapia acolhe e ajuda a reconstruir a autoconfiança, no tempo de cada um."
   }
 ]
