@@ -20,7 +20,7 @@ export const treatments: Treatment[] = [
   {
     icon: 'users',
     title: 'Relacionamentos e vida social',
-    body: 'Muitas crianças e adolescentes têm dificuldade para fazer amigos, vivem conflitos em casa ou na escola, ou se sentem sozinhas. Trabalho para que seu filho ou filha construa vínculos mais firmes no dia a dia.',
+    body: 'Muitas crianças e adolescentes têm dificuldade para fazer amigos, vivem conflitos em casa ou na escola, ou se sentem sozinhos. Trabalho para que seu filho ou filha construa vínculos mais firmes no dia a dia.',
   },
   {
     icon: 'leaf',
