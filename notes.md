@@ -137,6 +137,19 @@ Mark chose SP1 before SP3. Full kickoff cycle (brainstorm→spec→plan→SDD ex
 
 **Next:** SP3 (build the 9 `/atendimento/` pages) — Task 13 now unblocked by SP1's rewritten cards.
 
+## 2026-08-10 — www TLS cert RESOLVED (GitHub Support fix, verified live)
+
+The multi-week stuck www cert is **fixed**. GitHub Support replied (2026-08-06) that they nudged
+the provisioning; a cert covering www was approved. Verified live 2026-08-10 (trust the metal, not
+the claim): `gh api .../pages` cert `domains` now `[apex, www]`, `state:approved`, exp 2026-11-04;
+`openssl s_client` on www returns a valid **Let's Encrypt** cert with SAN covering both names — no
+more `*.github.io` fallback warning. **The Support-ticket path worked; the www-primary flip we were
+tempted into and held was correctly avoided** (it was a GitHub backend provisioning stall all along,
+exactly as diagnosed). Caveat from Support: this hands-on help is a paid-plan perk, so a recurrence on
+the free plan might not get it. Remaining: `https_enforced` is still `false` — enabling "Enforce
+HTTPS" is now safe (cert covers both hosts) but is Mark's managed repo setting, offered not toggled.
+Lesson updated in memory [[github-pages-stuck-www-cert]].
+
 ## 2026-08-10 — Humanized the 5 treatment card bodies (DEPLOYED + LIVE)
 
 Mark asked to run the site copy through a "humanizer" and research the best. **Research verdict:
