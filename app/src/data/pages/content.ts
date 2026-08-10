@@ -102,4 +102,15 @@ export const pagesContent: Record<string, string> = {
 <h3>Atende por plano de saúde?</h3>
 <p>Atualmente atendo apenas de forma particular.</p>
 `,
+  'dificuldades-de-relacionamento': `
+<p>Seu filho ou filha prefere ficar de lado na festa, evita o intervalo com os colegas ou parece não ter ninguém para chamar no fim de semana? Nem toda retração pede alarme, mas às vezes ela merece um olhar mais atento.</p>
+<h2>Timidez × dificuldade de relacionamento</h2>
+<p>Toda criança tímida tem um jeito próprio de entrar em um grupo — mais devagar, observando antes de participar. Isso é temperamento, não um problema a corrigir. A diferença aparece quando essa reserva vira sofrimento: quando seu filho ou filha sem amigos evita a escola, chora antes de festas ou encontros, ou mostra sinais de ansiedade social infantil diante de qualquer situação com outras crianças. É esse segundo cenário — não a timidez em si — que costuma pedir apoio terapêutico.</p>
+<h2>Quando a solidão pede atenção</h2>
+<p>Uma criança que se sente sozinha nem sempre fala isso em palavras. Pode aparecer como recusa em ir à escola, silêncio sobre o próprio dia, ou um comentário solto do tipo "ninguém quer brincar comigo". Na adolescência, a solidão costuma se esconder atrás das telas — muito tempo online pode ser, também, uma forma de evitar o contato que dói. Reconhecer esses sinais é o primeiro passo para abrir uma conversa sobre o que está sendo vivido.</p>
+<h2>Como a terapia ajuda</h2>
+<p>Como psicanalista, ofereço terapia para dificuldade de relacionamento na adolescência e também na infância. As conversas são feitas por chamada de vídeo — um formato que costuma ajudar quem ainda não se sente à vontade no contato presencial direto. O trabalho não é "ensinar" seu filho ou filha a ser mais extrovertido: é entender o que dificulta a aproximação com o outro e fortalecer a confiança para que ele ou ela possa se relacionar do seu próprio jeito. Esse cuidado caminha ao lado da <a href="/atendimento/terapia-infantil">terapia infantil</a> na infância e da <a href="/atendimento/terapia-para-adolescentes">terapia para adolescentes</a> na adolescência; quando ajuda, a <a href="/atendimento/orientacao-para-pais">orientação para os pais</a> soma apoio também para você, em casa.</p>
+<h2>Como começar</h2>
+<p>Se você reconhece esses sinais no seu filho ou filha, escreva pelo WhatsApp e me conte um pouco sobre o que tem observado. A partir de uma conversa inicial, sem compromisso, decidimos juntas o próximo passo, no ritmo que fizer sentido para vocês.</p>
+`,
 }

@@ -62,5 +62,13 @@
     "sectionRoot": "atendimento",
     "title": "Terapia para Comportamento Infantil",
     "description": "Birras frequentes, desafios e conflitos em casa? A terapia ajuda a compreender o que o comportamento do seu filho ou filha comunica — sem rótulos."
+  },
+  {
+    "slug": "dificuldades-de-relacionamento",
+    "path": "/atendimento/dificuldades-de-relacionamento",
+    "outputDir": "atendimento/dificuldades-de-relacionamento",
+    "sectionRoot": "atendimento",
+    "title": "Dificuldade de Relacionamento e Timidez",
+    "description": "Timidez, dificuldade de fazer amigos ou sensação de solidão? A terapia ajuda crianças e adolescentes a se relacionarem com mais segurança."
   }
 ]
