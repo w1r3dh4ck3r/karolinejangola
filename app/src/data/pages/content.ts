@@ -50,4 +50,15 @@ export const pagesContent: Record<string, string> = {
 <h3>Atende por plano de saúde?</h3>
 <p>Atualmente atendo apenas de forma particular.</p>
 `,
+  'orientacao-para-pais': `
+<p>Nem sempre a dúvida está no seu filho ou filha — às vezes é você quem precisa de um espaço para pensar em voz alta, organizar o que está sentindo e sair da conversa com mais clareza sobre os próximos passos.</p>
+<h2>O que é a orientação para pais</h2>
+<p>A orientação para pais é um espaço só seu, separado do acompanhamento do seu filho ou filha, dedicado a pensar junto com você o que está acontecendo em casa. Alguns chamam de aconselhamento para pais — o formato é o mesmo: você traz suas dúvidas e observações sobre o comportamento da criança ou do adolescente, e juntas organizamos um caminho, sem julgamento sobre o que você já tentou ou deixou de tentar. Os encontros acontecem por chamada de vídeo, no horário que couber na sua rotina.</p>
+<h2>Quando ela ajuda</h2>
+<p>É comum chegar até aqui pensando "como lidar com meu filho ou filha" diante de uma birra que não passa, uma queda de rendimento na escola, ou mudanças de comportamento que deixam você sem chão. A orientação também ajuda quando o cansaço de tentar sozinha começa a pesar — é um apoio para mães que estão vivendo esse tipo de dúvida, mesmo sem o seu filho ou filha estar em acompanhamento comigo.</p>
+<h2>Avulsa ou no pacote mensal</h2>
+<p>A orientação para pais pode ser contratada separadamente, em sessões avulsas, para quem busca apoio pontual em um momento específico. Ela também pode entrar como parte do acompanhamento mensal do seu filho ou filha, caminhando junto da <a href="/atendimento/terapia-infantil">terapia infantil</a> ou da <a href="/atendimento/terapia-para-adolescentes">terapia para adolescentes</a>, conforme a fase em que ele ou ela está. Conversamos juntas sobre qual formato faz mais sentido para o seu momento.</p>
+<h2>Como começar</h2>
+<p>Para começar, escreva pelo WhatsApp contando um pouco do que você está vivendo com o seu filho ou filha. Marcamos uma conversa inicial, sem compromisso, e a partir dela decidimos o formato — avulso ou dentro do acompanhamento mensal — que melhor apoia esse momento.</p>
+`,
 }

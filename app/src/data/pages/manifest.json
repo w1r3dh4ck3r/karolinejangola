@@ -30,5 +30,13 @@
     "sectionRoot": "atendimento",
     "title": "TDAH: Terapia e Acompanhamento",
     "description": "Acompanhamento terapêutico para crianças e adolescentes com TDAH, focado no fortalecimento emocional e no dia a dia. Não realizo laudos nem diagnósticos."
+  },
+  {
+    "slug": "orientacao-para-pais",
+    "path": "/atendimento/orientacao-para-pais",
+    "outputDir": "atendimento/orientacao-para-pais",
+    "sectionRoot": "atendimento",
+    "title": "Orientação para Pais",
+    "description": "Orientação para você, mãe, entender e apoiar melhor o seu filho ou filha. Separadamente ou junto ao acompanhamento mensal."
   }
 ]
