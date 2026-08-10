@@ -1,7 +1,7 @@
 # SESSION-STATE
 
-## Current Task (2026-08-10 — ACTIVE: SP1 positioning consistency)
-Mark chose **SP1 before SP3**. Ran kickoff→brainstorm; design APPROVED; **spec written+committed** `docs/superpowers/specs/2026-08-10-sp1-positioning-consistency-design.md` (commit `232141a`). **Awaiting Mark's spec-review**, then writing-plans → execute → **Gemini gate (blocking)**.
+## Current Task (2026-08-10 — SP1 BUILT + VERIFIED, awaiting Mark's merge/deploy decision)
+SP1 fully executed via SDD on branch **`sp1-positioning-consistency`** (7 commits, `a7a3329`..`a6adc09`, ahead of `main`; working tree clean; 27/27 tests pass). Spec `docs/superpowers/specs/2026-08-10-sp1-positioning-consistency-design.md`, plan `docs/superpowers/plans/2026-08-10-sp1-positioning-consistency.md`. 4 tasks + 2 Gemini-gate fixes; every task review clean; **opus whole-branch review = merge YES; Gemini adversarial gate CLEARED (no blocking issues)**. Review CAUGHT a served CRP-title leak (`<meta name="keywords">` "psicóloga online Brasil" + depressão + mulheres in `app/index.html`) that data-file edits alone missed → fixed in Task 4 + guard extended to index.html. Published root already regenerated (Task 4 build; the 2 later commits are test-only). **In finishing-a-development-branch: presented 3 options; merge-to-main = live deploy (Ads site) needs `approved-push main` = Mark's explicit go.**
 SP1 = copy-consistency only, no logic. Changes: (1) `treatments.ts` REPLACE all 5 cards → her real conditions (drop Depressão+Trauma; icons unchanged heart/brain/users/leaf/sparkles; TDAH/TEA cards state no-diagnóstico/laudo boundary); (2) `seo.ts` 4 edits — serviceType drop "Terapia para Mulheres" +add "Terapia para Adolescentes", knowsAbout drop Depressão/Trauma, professionalService.desc + homeSeo.desc (l.76 AND identical og l.85) drop depressão/trauma→"Acompanhamento de ansiedade, TDAH, TEA, autoestima…"; (3) `faq.ts` Q5 drop depressão/traumas +add 8–19 range; (4) blog `como-saber-se-preciso-de-terapia.ts` §3+§7 worst-lines scrub only. Reader=mother/guardian female grammar; CHILD stays "seu filho ou filha" (never force fem on child). Card copy = DRAFT, Karoline tone-checks.
 NOT changing (decided): hero H1/BlogCta "sozinha" (correct fem for mother-reader — OVERRIDES stale "reframe hero" note); testimonials Ana Carolina/Lívia "Paciente adulta" (Mark: keep-for-now, accepted inconsistency). Blog post stays adult-framed overall→full reframe is SP5. Verify grep scoped to changed data files (blog §4 keeps "depressão" intentionally).
 
@@ -28,14 +28,14 @@ GitHub Support gave a canned "read the articles" non-answer; ticket effectively 
 ## Last Action (prior — 2026-08-01)
 www TLS (2026-08-01): unstick attempt + research. Removed+re-added Pages custom domain via API + forced build → cleared a `status: errored` build state (old Jekyll leftover) that likely blocked provisioning. Ruled out client-side causes: DNS clean (apex→4 Pages IPs, no AAAA/stray CNAME; www→github.io CNAME), CAA authorizes letsencrypt.org. Cert STILL `dns_changed`/apex-only. **Research (primary GitHub sources) found this matches an ACTIVE 2026 GitHub Pages backend bug (July 19–20 incident; community discussions #202318, #200447): provisioning job stalls before starting the LE request; state is DOMAIN-scoped, so www-primary flip is NOT confirmed to help and risks mirroring the bug onto the apex.** Staff say STOP removing/re-adding (resets timer) and open GitHub Support. DECISION (Mark): hold the www flip. Built the flip locally then REVERTED it (working tree clean, apex config intact). **DONE: Mark FILED the GitHub Support ticket 2026-08-01 ~17:00** (repo w1r3dh4ck3r/karolinejangola, category "Repository features/Branches" — portal has no Pages category; GitHub's own AI triage confirmed DNS is correct + no self-service fix exists). Now WAITING on GitHub Support reply.
 
-## Next Step (2026-08-10 — SP1)
-- **Awaiting Mark's review of the SP1 spec** (`docs/superpowers/specs/2026-08-10-sp1-positioning-consistency-design.md`, committed `232141a`). On approval: invoke `superpowers:writing-plans` → execute → build (`cd app && npm run build && npm run publish:site`) → `approved-push main` → **Gemini adversarial gate (blocking, kickoff hard rule)**.
-- Before editing seo/faq/treatments: **check `app/` tests** (`app/**/*.test.ts` / vitest) for any that pin the OLD strings (depressão/trauma/Mulheres) — update them in the same task.
-- SP3 still queued after SP1 (plan `docs/superpowers/plans/2026-08-10-sp3-build-atendimento-pages.md`).
+## Next Step (2026-08-10 — SP1 finish)
+- **Awaiting Mark's merge/deploy decision** (finishing-a-development-branch menu). If option 1 (merge to main): `git checkout main && git merge sp1-positioning-consistency` (ff), then `approved-push main` (Mark's go = live), verify Pages build `built`, live-verify apex homepage serves new cards/meta (no depressão/trauma/mulheres/psicólog; TDAH/TEA/Acompanhamento present). Then delete SDD workspace `.superpowers/sdd/2026-08-10-sp1-positioning-consistency/` (git is the record) + wrap-up.
+- Deferred to SP5 (recorded in ledger): (1) guard tripwire for TDAH/TEA disclaimer text; (2) blog BODY prose still has depressão/psicólogo (terapia-online-funciona, como-saber) — full blog reframe is SP5.
+- After SP1 merges: **SP3** (plan `docs/superpowers/plans/2026-08-10-sp3-build-atendimento-pages.md`); Task 13 now unblocked (SP1 rewrote the hub cards).
+- Housekeeping still pending: archive pre-2026-08-07 notes.md entries to `docs/notes-archive.md`.
 
-## Files to touch next (SP1 execution)
-- `app/src/data/treatments.ts` · `app/src/data/seo.ts` · `app/src/data/faq.ts` · `app/src/data/blog/como-saber-se-preciso-de-terapia.ts` — Read each before first Edit (post-compaction).
-- Check for pinning tests under `app/src/` before editing. After edits: `cd app && npm run build && npx vitest run && npm run publish:site`.
+## Files to touch next (SP1 finish)
+- No source edits pending. Merge/deploy is a git operation on branch `sp1-positioning-consistency` → `main`. All SP1 source already committed; if resuming a code change, Read the file first (post-compaction): `app/src/data/{treatments,seo,faq,positioning.test}.ts`, `app/index.html`, `app/src/data/blog/como-saber-se-preciso-de-terapia.ts`.
 
 ## Next Step (prior)
 - **SP0:** DONE, merged, live, workspace cleaned. Nothing outstanding.
@@ -51,4 +51,4 @@ www TLS (2026-08-01): unstick attempt + research. Removed+re-added Pages custom 
 - After code edits: `cd app && npm run build && npm run publish:site`, then `approved-push main`.
 - Uncommitted docs this session: `docs/superpowers/specs/2026-08-09-sp2-ia-keyword-map-design.md`, `docs/superpowers/plans/2026-08-10-sp3-build-atendimento-pages.md`, `docs/reference/practice-facts.md`, `docs/reference/keyword-research-2026-08-09.md` (commit at wrap-up).
 
-<!-- session-state-sync: last written by session 529e7816 at 2026-08-10 15:32:34 -0300 -->
+<!-- session-state-sync: last written by session 529e7816 at 2026-08-10 16:26:38 -0300 -->
