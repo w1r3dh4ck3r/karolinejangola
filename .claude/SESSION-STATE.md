@@ -37,6 +37,7 @@ www TLS (2026-08-01): unstick attempt + research. Removed+re-added Pages custom 
 - Deferred to SP5 (were the only SP1 minors, both non-blocking): (1) guard tripwire asserting the TDAH/TEA "não faço diagnóstico/laudo" disclaimer text survives; (2) blog BODY prose still has depressão/psicólogo in `terapia-online-funciona` + `como-saber` — full blog reframe is SP5 (SP1 only did the 2 worst lines by design).
 - Housekeeping: notes.md now spans >3 sessions — archive pre-2026-08-07 entries to `docs/notes-archive.md`.
 - www TLS: still a stuck GitHub-side apex-only cert; low-severity (Ads→apex). Escalation reply drafted for Mark to paste. Do NOT flip www-primary / cycle remove-re-add.
+- **OPEN:** Mark asked (2026-08-10 end) to send a pt-BR "improvements + next steps" summary to his **Telegram** — the telegram MCP bridge was **DISCONNECTED** this session (no send/reply tools; also no incoming chat_id to target). Delivered the drafted pt-BR text in chat for him to paste. If still wanted: reconnect the telegram plugin (or have Mark message the bot first), then send.
 
 ## Files to touch next
 - SP3 execution (per its plan): `app/scripts/lib/generated-paths.mjs`, `app/scripts/publish.mjs`, `app/src/data/seo.ts`, new `app/src/data/pages/faq.ts`, `app/src/components/StaticPage.tsx`, `app/src/data/pages/{manifest.json,content.ts}`. Read each before first Edit (post-compaction). One-time: `cd app && npx playwright install chromium`.
