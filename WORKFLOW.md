@@ -3,7 +3,7 @@
 ## Prerequisites (once per machine)
 
 ```bash
-cd ~/AI/projects/karolinejangola/app
+cd ~/AI/projects/Web/karolinejangola/app
 npm install
 npx playwright install chromium   # required by the prerender build step
 ```
