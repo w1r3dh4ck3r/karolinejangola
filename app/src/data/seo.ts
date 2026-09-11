@@ -23,7 +23,16 @@ export const professionalServiceJsonLd = {
   email: site.email,
   image: OG_IMAGE,
   priceRange: '$$',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Vila Velha',
+    addressRegion: 'ES',
+    addressCountry: 'BR',
+  },
   areaServed: [
+    { '@type': 'City', name: 'Vila Velha' },
+    { '@type': 'AdministrativeArea', name: 'Grande Vitória' },
+    { '@type': 'State', name: 'Espírito Santo' },
     { '@type': 'Country', name: 'Brasil' },
     { '@type': 'Place', name: 'Brasileiros no exterior (atendimento online)' },
   ],
