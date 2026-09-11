@@ -136,3 +136,44 @@ page **copy is a draft for Karoline's tone pass** (deferred-minors list in SESSI
 **Next:** Karoline tone-checks the 9 drafts; then SP4 (authority, BLOCKED on real credentials) or SP5
 (blog engine + the deferred blog-body reframe). Housekeeping still pending: notes.md spans >3 sessions —
 archive pre-2026-08-07 entries to `docs/notes-archive.md` at the next wrap-up.
+
+## 2026-09-11 — SP6 (local / AI-search) STARTED: Vila Velha/ES signals + Bing verification, LIVE
+
+Mark asked how to get Karoline recommended by ChatGPT/other AIs (he'd screenshotted ChatGPT's
+local-search returning a Mapbox map + directory cards with 5.0 reviews for ES psicólogas). Verified
+(web search) the mechanism: **ChatGPT local recs run a live Bing search + crawl of the top results,
+preferring directories/listings with reviews + structured data — it does NOT read GBP or the site's
+schema directly.** So the dominant levers are OFF-site (Bing Places, Google Meu Negócio, real reviews,
+NAP consistency); the site is necessary-not-sufficient. Two honest constraints held: the screenshot
+query was "mulheres + ES" — NOT her positioning (children/adolescents, online-nacional); and she's
+psicanalista, not CRP psicóloga (directory categories may gate on that).
+
+**Real practice city confirmed = Vila Velha/ES** (supersedes the old "DDD 79 = Sergipe" guess — a phone
+DDD never proved location). She's **online-only** (no consultório/presencial — every service is
+videochamada per practice-facts + content grep), so the honest frame is a **service-area business**
+based in Vila Velha, attending online across Brasil — no invented street address, no presencial claim.
+
+**Shipped + LIVE-verified (two pushes):**
+- `422b980` — `BingSiteAuth.xml` (Bing ownership token, from Mark's Downloads) placed at repo root AND
+  `app/public/` (so it survives every publish, like robots.txt — confirmed against publish.mjs's
+  allowlist-delete model). Live HTTP 200; Mark verified in Bing Webmaster Tools + submitted the sitemap.
+- `c0ab193` — Vila Velha/ES local signals in `seo.ts` `ProfessionalService` JSON-LD: a street-less
+  `PostalAddress` (locality/region/country) + `areaServed` widened City→AdministrativeArea→State→
+  Country→Place. Opus reviewer GO (schema-valid, no walk-in implication, no positioning/claim
+  regression); build+publish PASS; 30/30 tests; live home JSON-LD serves `addressLocality:Vila Velha`.
+
+**Also verified:** AI crawlers (bingbot/OAI-SearchBot/GPTBot/PerplexityBot) all get HTTP 200 + full
+prerendered HTML; robots open; Breadcrumb+FAQPage JSON-LD live — crawlability was never the bottleneck.
+Site already carries a Google Search Console verification meta (BWT could've one-click imported from GSC).
+
+**Phone:** `+55-79-9649-1276` confirmed correct for now; Karoline transitioning to a DDD-27 (ES) number
+soon → when it lands, change `seo.ts` telephone + every listing in ONE pass (NAP). Listings created before
+the switch should use the current 79 number to match the site.
+
+**Deliverable for Karoline:** `docs/reference/tarefas-karoline-busca-ia.md` — PT-BR, prioritized off-site
+checklist (Bing Places, Google Meu Negócio, reviews, NAP, directory eligibility, Instagram).
+
+**Next:** off-site tasks are Karoline's (the doc). Optional technical adds when wanted: IndexNow
+(account-free Bing nudge), `sameAs` links to her Bing/Google profiles once created, and a subtle visible
+"Vila Velha/ES · atendimento online" line (needs copy/review gate). Housekeeping still open: archive
+pre-2026-08-07 notes to `docs/notes-archive.md`.
