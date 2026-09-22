@@ -221,7 +221,9 @@ no spam) before the one real live test — **delivered to Karoline's DM, confirm
 
 **Secret hygiene note:** an early redaction regex missed the `cfut_` token format, so `CLOUDFLARE_API_TOKEN`,
 `_DNS_TOKEN`, `_PALPITE_TOKEN` (plus the bot token + new tunnel token) printed in cleartext in the session
-transcript (remote-viewable). Flagged to Mark to roll at leisure.
+transcript (remote-viewable) — a real residual exposure (account Tunnel+Access:Edit + bot control) until
+rotated. Rotation is Mark-only (CF dashboard + BotFather; I lack API-Tokens:Edit) and should be done
+PROMPTLY, not deferred — tracked in SESSION-STATE `## Next Step (housekeeping)`.
 
 **Polish DONE (same session):** (1) moved the bot token out of the Code node into a proper n8n
 **Telegram credential** (`kjtgcred00000001` "Karoline Leads Bot") — workflow is now Webhook → Code
