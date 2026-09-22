@@ -177,3 +177,61 @@ checklist (Bing Places, Google Meu Negócio, reviews, NAP, directory eligibility
 (account-free Bing nudge), `sameAs` links to her Bing/Google profiles once created, and a subtle visible
 "Vila Velha/ES · atendimento online" line (needs copy/review gate). Housekeeping still open: archive
 pre-2026-08-07 notes to `docs/notes-archive.md`.
+
+## 2026-09-22 — Visitor→Telegram alert system REBUILT + LIVE
+
+Mark asked to re-establish the old "someone visited the site → alert Karoline's Telegram" system.
+Investigated before building (hub-oriented). **The site half was never broken** — `app/src/lib/tracking.ts`
+still fires a beacon on every hard page load (`POST https://n8n.w1r3d.dev/webhook/visitor` with
+`{site,page,referrer,ua}`), and it's in the LIVE deployed bundle. The receiver had two independent
+breakages, either fatal: (1) `n8n.w1r3d.dev` is fronted by **Cloudflare Access** — an anonymous browser
+POST 302-redirects to the Access login and never reaches the webhook (the client's `try/catch` swallowed
+it, so nothing looked broken); (2) the homelab n8n had **no visitor workflow at all** (only Selva +
+netmon). The old n8n "lived on the cloud VPS" per the wiki — that VPS died 2026-07-18, taking the
+original workflow with it. **No record survived** of the old workflow's Telegram internals, so the n8n
+side was a fresh build; only the input contract (the beacon payload) was known.
+
+**Fixed both sides, no site/repo changes:**
+- **Cloudflare** (via a new dedicated least-priv token `CLOUDFLARE_TUNNEL_ACCESS_TOKEN`, account
+  Tunnel+Access:Edit): confirmed via the tunnel ingress API that `n8n.w1r3d.dev` is served by the
+  **healthy `homelab` tunnel** → `http://n8n:5678` (a duplicate DOWN `n8n` tunnel with the same hostname
+  also existed — stale; **deleted in the same-session polish below**). Created a **path-scoped Access Bypass app** (`4a8630cf-…`) for
+  `n8n.w1r3d.dev/webhook/visitor` (more-specific path wins; bypass evaluated first) — opens ONLY that one
+  path, editor stays behind the `allow-mark` policy. Cloudflare's own documented pattern for public
+  webhook receivers behind Access.
+- **n8n** (homelab, v2.29.10): workflow `kjvisitor00000001` "Karoline — Visitor → Telegram" =
+  Webhook(POST /visitor, `allowedOrigins:*`) → Code node that filters bot/crawler UAs, formats a pt-BR
+  alert, and POSTs to the Telegram Bot API (`@psileads_bot` → Karoline chat `6602539077`) via
+  `require('https')`. Chose a self-contained HTTP send over a Telegram credential to dodge CLI
+  credential-encryption quirks.
+
+**n8n activation gotcha worth banking:** this box runs n8n in **regular (non-queue) mode**, where
+`import:workflow --activeState fromJson` AND live CLI activation are **refused** ("not supported in
+regular deployment mode"). The public REST API could activate, but `N8N_API_KEY` in ~/.secrets is an
+empty placeholder. Path that works: `n8n publish:workflow --id=<id>` (sets the active flag) → `docker
+restart n8n` (registers active webhooks on startup). Verified registration by watching the probe flip
+from n8n's `404 "not registered"` to `200`.
+
+**Verification (advisor caught two silent-green traps):** the biggest was **CORS preflight** — the
+beacon's `application/json` triggers an OPTIONS preflight that n8n must answer, or the browser never
+sends the POST; a curl test would pass while every real visitor failed (likely the original silent
+failure too). Confirmed `OPTIONS` → `204` with `access-control-allow-origin: https://karolinejangola.com`.
+Also probed routing with a no-workflow POST (harmless) and registration with a `curl`-UA POST (filtered,
+no spam) before the one real live test — **delivered to Karoline's DM, confirmed by her.**
+
+**Secret hygiene note:** an early redaction regex missed the `cfut_` token format, so `CLOUDFLARE_API_TOKEN`,
+`_DNS_TOKEN`, `_PALPITE_TOKEN` (plus the bot token + new tunnel token) printed in cleartext in the session
+transcript (remote-viewable). Flagged to Mark to roll at leisure.
+
+**Polish DONE (same session):** (1) moved the bot token out of the Code node into a proper n8n
+**Telegram credential** (`kjtgcred00000001` "Karoline Leads Bot") — workflow is now Webhook → Code
+(filter + build pt-BR message) → Telegram node; token no longer lives in the workflow definition.
+CLI credential import gotcha: needs an explicit `id` field (n8n 2.x won't auto-generate) — with one it
+encrypts + round-trips cleanly. (A pre-existing dup cred `Zyj5VgD4jgpsHT90` "Telegram Psileads Bot"
+holds the same token, now unused — left for optional cleanup, no CLI delete without an API key.)
+(2) **Deleted the stale duplicate `n8n` cloudflared tunnel** (0 connections; the live `homelab` tunnel
+serves the hostname — re-probed 200 after deletion). Re-verified the whole chain post-polish
+(registration 200, CORS ACAO, real `/teste-credencial` send ran with no Telegram node error).
+
+**Still optional (not done):** enrich the alert (geo/IP, dedupe rapid repeats); fill the empty
+`N8N_API_KEY` via the n8n UI to unlock API-based management from this machine.
